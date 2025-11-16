@@ -13,6 +13,15 @@ MonoBehaviour:
   m_Name: MergedTankConfig
   m_EditorClassIdentifier: Assembly-CSharp::MiniIT.Configs.MergedCarConfig
   _mergedTanksData:
-  - <CarSprite>k__BackingField: {fileID: 0}
+  - <TankView>k__BackingField: {fileID: -5857531828058014082, guid: 78766fcef2c46c5458eca62ccc2c892c, type: 3}
     <Level>k__BackingField: 0
-    <Damage>k__BackingField: 0
+    <Damage>k__BackingField: 5
+  - <TankView>k__BackingField: {fileID: 4643538258697920395, guid: 000f9c1d8c058a0498196726c192edae, type: 3}
+    <Level>k__BackingField: 1
+    <Damage>k__BackingField: 7
+  - <TankView>k__BackingField: {fileID: 456343360348955610, guid: 4bce3188f0fa6ec468637060f9c8339b, type: 3}
+    <Level>k__BackingField: 2
+    <Damage>k__BackingField: 10
+  - <TankView>k__BackingField: {fileID: -6576394431907424566, guid: fa4e8a9e3e3257042ac87dbaff7a4bcd, type: 3}
+    <Level>k__BackingField: 3
+    <Damage>k__BackingField: 15

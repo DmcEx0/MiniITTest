@@ -6,8 +6,8 @@ namespace MiniIT.Configs
     [CreateAssetMenu(menuName = "Configs/MergedTankConfig", fileName = "MergedTankConfig")]
     public class MergedTankConfig : ScriptableObject
     {
-        [SerializeField] private List<MergedTankData> _mergedTanksData;
+        [SerializeField] private List<DefaultMergedTankData> _mergedTanksData;
         
-        public IReadOnlyList<MergedTankData> MergedTanksData => _mergedTanksData;
+        public IReadOnlyList<DefaultMergedTankData> MergedTanksData => _mergedTanksData;
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using System.Linq;
 using MiniIT.Configs;
-using MiniIT.Views;
+using MiniIT.Data;
 using UnityEngine;
 
 namespace MiniIT.Models
@@ -8,16 +9,31 @@ namespace MiniIT.Models
     public class GridModel
     {
         private readonly GameConfig _gameConfig;
-        private readonly Dictionary<CellView, bool> _cells = null;
+        private readonly List<CellData> _cellsData = null;
+        private readonly List<CellData> _freeCells = null;
         
-        public IReadOnlyDictionary<CellView, bool> Cells => _cells;
+        public IReadOnlyList<CellData> CellsData => _cellsData;
 
         public GridModel(GameConfig gameConfig)
         {
             _gameConfig = gameConfig;
-            _cells = new Dictionary<CellView, bool>();
+            _cellsData = new ();
+            _freeCells = new ();
         }
 
+        public IReadOnlyList<CellData> GetFreeCells()
+        {
+            foreach (var cellData in _cellsData)
+            {
+                if (cellData.IsBusy == false)
+                {
+                    _freeCells.Add(cellData);
+                }
+            }
+            
+            return _freeCells;
+        }
+        
         public void BuildGrid()
         {
             float width = _gameConfig.GridSize.x;
@@ -44,7 +60,9 @@ namespace MiniIT.Models
                     cellInstance.transform.localScale =
                         new Vector3(_gameConfig.CellSize, _gameConfig.CellSize, _gameConfig.CellSize);
 
-                    _cells.Add(cellInstance, false);
+                    var newCellData = new CellData(cellInstance, false);
+                    
+                    _cellsData.Add(newCellData);
                 }
             }
         }

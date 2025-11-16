@@ -1,12 +1,13 @@
 using System;
+using MiniIT.Views;
 using UnityEngine;
 
 namespace MiniIT.Configs
 {
     [Serializable]
-    public class MergedTankData
+    public class DefaultMergedTankData
     {
-        [field: SerializeField] public Sprite CarSprite { get; private set; }
+        [field: SerializeField] public MergedTankView TankView { get; private set; }
         [field: SerializeField] public int Level { get; private set; }
         [field: SerializeField] public float Damage { get; private set; }
     }

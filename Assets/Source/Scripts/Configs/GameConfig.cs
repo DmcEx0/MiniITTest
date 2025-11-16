@@ -10,5 +10,6 @@ namespace MiniIT.Configs
         [field: SerializeField] public CellView CellPrefab { get; private set; }
         [field: SerializeField] public float CellSize { get; private set; }
         [field: SerializeField] public float CellSpacing { get; private set; }
+        [field: SerializeField] public float SpawnTankDelay { get; private set; }
     }
 }
