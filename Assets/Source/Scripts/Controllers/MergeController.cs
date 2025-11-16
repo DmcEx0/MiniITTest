@@ -38,6 +38,7 @@ namespace MiniIT.Controllers
         {
             var firstData = _gridModel.CellsData.Where(data => data.TankData != null)
                 .FirstOrDefault(data => ReferenceEquals(data.TankData.View, dragTank));
+
             
             var secondData = _gridModel.CellsData.Where(data => data.TankData != null)
                     .FirstOrDefault(data => ReferenceEquals(data.TankData.View, secondaryTank));
@@ -47,10 +48,18 @@ namespace MiniIT.Controllers
                 Debug.LogError($"Merge failed. Fist data is {firstData}. Secondary data is {secondData}");
                 return;
             }
-
-            if (firstData.TankData.Level == secondData.TankData.Level)
+            
+            var firstTankData = firstData.TankData;
+            var secondaryTankData = secondData.TankData;
+            
+            
+            if (firstTankData.Level == secondaryTankData.Level)
             {
                 Debug.Log("Merge successful");
+                dragTank.Merging -= TryMerge;
+                secondaryTank.Merging -= TryMerge;
+                
+                _mergeModel.OnMergedSuccess(firstTankData.Level, secondData);
             }
         }
     }

@@ -1,3 +1,4 @@
+using System;
 using MiniIT.Configs;
 using MiniIT.Data;
 using MiniIT.Factory;
@@ -7,10 +8,9 @@ using VContainer.Unity;
 
 namespace MiniIT.Controllers
 {
-    public class GameController : IStartable, ITickable
+    public class GameController : IInitializable, IStartable, ITickable, IDisposable
     {
         private readonly GameConfig _gameConfig;
-        private readonly MergedTankConfig _mergedTankConfig;
         private readonly TankFactory _tankFactory;
 
         private readonly TanksModel _tanksModel;
@@ -19,15 +19,24 @@ namespace MiniIT.Controllers
 
         private float _accumulatedTimeForSpawnTank;
 
-        public GameController(GameConfig gameConfig, MergedTankConfig mergedTankConfig, TanksModel tanksModel,
-            GridModel gridModel, TankFactory tankFactory, MergeModel mergeModel)
+        public GameController(GameConfig gameConfig, TanksModel tanksModel, GridModel gridModel,
+            TankFactory tankFactory, MergeModel mergeModel)
         {
             _gameConfig = gameConfig;
-            _mergedTankConfig = mergedTankConfig;
             _tanksModel = tanksModel;
             _gridModel = gridModel;
             _tankFactory = tankFactory;
             _mergeModel = mergeModel;
+        }
+        
+        public void Initialize()
+        {
+            _mergeModel.MergedSuccess += SpawnTank;
+        }
+        
+        public void Dispose()
+        {
+            _mergeModel.MergedSuccess -= SpawnTank;
         }
 
         public void Start()
@@ -36,7 +45,12 @@ namespace MiniIT.Controllers
 
             for (int i = 0; i < 5; i++)
             {
-                SpawnTank();
+                if (_gridModel.TryGetFreeCell(out CellData freeCell) == false)
+                {
+                    return;
+                }
+                
+                SpawnTank(0, freeCell);
             }
         }
 
@@ -50,18 +64,16 @@ namespace MiniIT.Controllers
             }
         }
 
-        private void SpawnTank()
+        private void SpawnTank(int level, CellData cellData)
         {
-            if (_gridModel.TryGetFreeCell(out CellData freeCell) == false)
+            if (_tankFactory.TryGet(out MergedTankData newTankData, level, cellData) == false)
             {
                 return;
             }
 
-            var newTankData = _tankFactory.Get(0, freeCell);
-            
-            freeCell.IsBusy = true;
-            freeCell.AddTank(newTankData);
-            
+            cellData.IsBusy = true;
+            cellData.AddTank(newTankData);
+
             _mergeModel.RegisterNewData(newTankData);
         }
     }

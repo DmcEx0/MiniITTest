@@ -1,3 +1,4 @@
+using System;
 using Cysharp.Threading.Tasks;
 using MiniIT.Data;
 
@@ -6,6 +7,8 @@ namespace MiniIT.Models
     public class MergeModel
     {
         private readonly AsyncReactiveProperty<MergedTankData> _mergedTankData;
+
+        public Action<int, CellData> MergedSuccess;
 
         public IReadOnlyAsyncReactiveProperty<MergedTankData> MergedTankData => _mergedTankData;
 
@@ -17,6 +20,12 @@ namespace MiniIT.Models
         public void RegisterNewData(MergedTankData mergedTankData)
         {
             _mergedTankData.Value = mergedTankData;
+        }
+
+        public void OnMergedSuccess(int mergedTanksLevel, CellData cellData)
+        {
+            mergedTanksLevel++;
+            MergedSuccess?.Invoke(mergedTanksLevel, cellData);
         }
     }
 }

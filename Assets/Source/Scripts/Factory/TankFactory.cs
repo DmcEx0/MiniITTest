@@ -14,22 +14,22 @@ namespace MiniIT.Factory
             _mergedTankConfig = mergedTankConfig;
         }
 
-        public MergedTankData Get(int level , CellData freeCell)
+        public bool TryGet(out MergedTankData tankData, int level , CellData freeCell)
         {
-            // TODO: Find Level
-            var tank = Object.Instantiate(_mergedTankConfig.MergedTanksData[level].TankView, freeCell.CellView.transform);
-            tank.transform.localPosition = Vector3.zero;
-            
             var defaultData = _mergedTankConfig.MergedTanksData.FirstOrDefault(data => data.Level == level);
 
             if (defaultData == null)
             {
-                return null;
+                tankData = null;
+                return false;
             }
             
-            var tankData = new MergedTankData(tank, defaultData.Level, defaultData.Damage);
+            var tank = Object.Instantiate(defaultData.TankView, freeCell.CellView.transform);
+            tank.transform.localPosition = Vector3.zero;
             
-            return tankData;
+            tankData = new MergedTankData(tank, defaultData.Level, defaultData.Damage);
+            
+            return true;
         }
     }
 }
