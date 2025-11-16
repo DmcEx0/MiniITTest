@@ -1,7 +1,7 @@
 using VContainer;
 using VContainer.Unity;
 
-namespace MiniIT
+namespace MiniIT.Scopes
 {
     public class GameLifetimeScope : LifetimeScope
     {
