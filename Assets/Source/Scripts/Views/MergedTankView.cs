@@ -5,16 +5,17 @@ namespace MiniIT.Views
 {
     public class MergedTankView : MonoBehaviour, IDrageable, IMergeable
     {
+        private Vector3 _startPosition;
         private Vector3 _offset;
-        private bool _canMerge = false;
 
         [field: SerializeField] public Collider2D Collider { get; private set; }
-        public Action<IMergeable, IMergeable> Merging { get; set; }
+        public Func<IMergeable, IMergeable, bool> Merging { get; set; }
 
         public void StartDrag(Vector3 pointerPosition)
         {
+            _startPosition = transform.position;
             _offset = transform.position - pointerPosition;
-            _canMerge = false;
+            Collider.enabled = false;
         }
 
         public void ProcessDrag(Vector3 pointerPosition)
@@ -24,22 +25,35 @@ namespace MiniIT.Views
 
         public void EndDrag()
         {
-            _canMerge = true;
-            // transform.position = _startPosition;
+            CheckOtherColliders();
         }
 
-        private void OnTriggerStay2D(Collider2D other)
+        private void CheckOtherColliders()
         {
-            if (_canMerge == false)
-            {
-                return;
-            }
-            
-            if (other.TryGetComponent(out IMergeable mergeable))
+            var pointerPosition = Collider.bounds.center;
+
+            RaycastHit2D hit = Physics2D.Raycast(pointerPosition, Vector2.zero);
+
+            if (hit.collider != null && hit.collider.TryGetComponent(out IMergeable mergeable))
             {
                 Collider.enabled = false;
-                Merging?.Invoke(this, mergeable);
+                var mergeSuccess = Merging?.Invoke(this, mergeable);
+
+                if (mergeSuccess == false)
+                {
+                    ResetToDefault();
+                }
             }
+            else
+            {
+                ResetToDefault();
+            }
+        }
+
+        private void ResetToDefault()
+        {
+            Collider.enabled = true;
+            transform.position = _startPosition;
         }
     }
 }

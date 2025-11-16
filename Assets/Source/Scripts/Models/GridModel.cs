@@ -62,10 +62,13 @@ namespace MiniIT.Models
 
                     var cellInstance = Object.Instantiate(_gameConfig.CellPrefab, worldPos, Quaternion.identity);
 
+                    cellInstance.name = $"Cell {i}-{j}";
+                    
                     cellInstance.transform.localScale =
                         new Vector3(_gameConfig.CellSize, _gameConfig.CellSize, _gameConfig.CellSize);
 
                     var newCellData = new CellData(cellInstance, false);
+                    newCellData.Name = cellInstance.name;
 
                     _cellsData.Add(newCellData);
                 }

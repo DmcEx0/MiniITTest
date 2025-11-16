@@ -6,6 +6,7 @@ namespace MiniIT.Data
     public class CellData
     {
         public bool IsBusy {get; set;}
+        public string Name {get; set;}
         public CellView CellView {get; private set;}
         public MergedTankData TankData {get; private set;}
         
@@ -15,7 +16,7 @@ namespace MiniIT.Data
             IsBusy = isBusy;
         }
 
-        public void AddTank(MergedTankData tankData)
+        public void ChangeTank(MergedTankData tankData)
         {
             if (TankData != null)
             {

@@ -43,7 +43,7 @@ namespace MiniIT.Controllers
         {
             _gridModel.BuildGrid();
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 20; i++)
             {
                 if (_gridModel.TryGetFreeCell(out CellData freeCell) == false)
                 {
@@ -72,7 +72,7 @@ namespace MiniIT.Controllers
             }
 
             cellData.IsBusy = true;
-            cellData.AddTank(newTankData);
+            cellData.ChangeTank(newTankData);
 
             _mergeModel.RegisterNewData(newTankData);
         }

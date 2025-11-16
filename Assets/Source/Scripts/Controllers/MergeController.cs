@@ -34,33 +34,41 @@ namespace MiniIT.Controllers
             mergedTankData.View.Merging += TryMerge;
         }
 
-        private void TryMerge(IMergeable dragTank, IMergeable secondaryTank)
+        private bool TryMerge(IMergeable dragTank, IMergeable secondaryTank)
         {
             var firstData = _gridModel.CellsData.Where(data => data.TankData != null)
                 .FirstOrDefault(data => ReferenceEquals(data.TankData.View, dragTank));
 
-            
             var secondData = _gridModel.CellsData.Where(data => data.TankData != null)
-                    .FirstOrDefault(data => ReferenceEquals(data.TankData.View, secondaryTank));
+                .FirstOrDefault(data => ReferenceEquals(data.TankData.View, secondaryTank));
 
             if (firstData == null || secondData == null)
             {
                 Debug.LogError($"Merge failed. Fist data is {firstData}. Secondary data is {secondData}");
-                return;
+                return false;
             }
+
+            Debug.Log("First: " + firstData.Name);
+            Debug.Log("Second: " + secondData.Name);
             
             var firstTankData = firstData.TankData;
             var secondaryTankData = secondData.TankData;
-            
-            
+
             if (firstTankData.Level == secondaryTankData.Level)
             {
-                Debug.Log("Merge successful");
                 dragTank.Merging -= TryMerge;
                 secondaryTank.Merging -= TryMerge;
-                
+
                 _mergeModel.OnMergedSuccess(firstTankData.Level, secondData);
+
+                Debug.Log("Move To: " + secondData.Name);
+
+                firstData.ChangeTank(null);
+
+                return true;
             }
+
+            return false;
         }
     }
 }

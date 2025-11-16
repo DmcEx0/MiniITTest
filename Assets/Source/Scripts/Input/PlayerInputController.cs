@@ -1,4 +1,6 @@
 using System;
+using MiniIT.Data;
+using MiniIT.Models;
 using MiniIT.Views;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,18 +11,21 @@ namespace MiniIT.Input
     public class PlayerInputController : IInitializable, ITickable, IDisposable
     {
         private readonly UserInput _userInput;
+        private readonly MergeModel _mergeModel;
 
         private IDrageable _findedDrageable;
 
         private bool _isProcess = false;
 
-        public PlayerInputController()
+        public PlayerInputController(MergeModel mergeModel)
         {
+            _mergeModel = mergeModel;
             _userInput = new UserInput();
         }
 
         public void Initialize()
         {
+            _mergeModel.MergedSuccess += UpdateDrageableReference;
             _userInput.Enable();
 
             _userInput.Player.Click.started += StartDrag;
@@ -28,9 +33,14 @@ namespace MiniIT.Input
             _userInput.Player.Click.canceled += EndDrag;
         }
 
+        private void UpdateDrageableReference(int arg1, CellData arg2)
+        {
+            _findedDrageable = null;
+        }
+
         public void Tick()
         {
-            if (_isProcess == false)
+            if (_isProcess == false || _findedDrageable == null)
             {
                 return;
             }
@@ -40,6 +50,8 @@ namespace MiniIT.Input
 
         public void Dispose()
         {
+            _mergeModel.MergedSuccess -= UpdateDrageableReference;
+            
             _userInput.Player.Click.started -= StartDrag;
             _userInput.Player.Click.performed -= ProcessDrag;
             _userInput.Player.Click.canceled -= EndDrag;
@@ -79,6 +91,7 @@ namespace MiniIT.Input
             _isProcess = false;
 
             _findedDrageable.EndDrag();
+            _findedDrageable = null;
         }
 
         private void FindDrageable()
