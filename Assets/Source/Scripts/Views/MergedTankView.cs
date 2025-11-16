@@ -3,43 +3,28 @@ using UnityEngine;
 
 namespace MiniIT.Views
 {
-    public class MergedTankView : MonoBehaviour, IClickable
+    public class MergedTankView : MonoBehaviour, IDrageable
     {
         private Vector3 _offset;
-        private float _zCoord;
         
         private Vector2 _startPosition;
-        private bool _canMerge = false;
 
-        public Action<MergedTankView> Clicked { get; set; }
-        
-        private void OnMouseDown()
+        public Action<MergedTankView> MergePerformed { get; set; }
+
+        public void StartDrag(Vector3 pointerPosition)
         {
-            _zCoord = Camera.main.WorldToScreenPoint(transform.position).z;
-            _offset = transform.position - GetMouseWorldPos();
+            _offset = transform.position - pointerPosition;
             _startPosition =  transform.position;
         }
 
-        private void OnMouseDrag()
+        public void ProcessDrag(Vector3 pointerPosition)
         {
-            transform.position = GetMouseWorldPos() + _offset;
+            transform.position = pointerPosition + _offset;
         }
 
-        private void OnMouseUp()
+        public void EndDrag()
         {
             transform.position = _startPosition;
-        }
-
-        private Vector3 GetMouseWorldPos()
-        {
-            Vector3 mousePoint = Input.mousePosition;
-            mousePoint.z = _zCoord;
-            return Camera.main.ScreenToWorldPoint(mousePoint);
-        }
-
-        public void Click()
-        {
-            Clicked?.Invoke(this);
         }
     }
 }

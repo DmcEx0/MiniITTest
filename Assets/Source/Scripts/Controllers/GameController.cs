@@ -14,20 +14,20 @@ namespace MiniIT.Controllers
         private readonly TankFactory _tankFactory;
 
         private readonly TanksModel _tanksModel;
-        private readonly GameFieldModel _gameFieldModel;
+        private readonly MergeModel _mergeModel;
         private readonly GridModel _gridModel;
 
         private float _accumulatedTimeForSpawnTank;
 
         public GameController(GameConfig gameConfig, MergedTankConfig mergedTankConfig, TanksModel tanksModel,
-            GameFieldModel gameFieldModel, GridModel gridModel, TankFactory tankFactory)
+            GridModel gridModel, TankFactory tankFactory, MergeModel mergeModel)
         {
             _gameConfig = gameConfig;
             _mergedTankConfig = mergedTankConfig;
             _tanksModel = tanksModel;
-            _gameFieldModel = gameFieldModel;
             _gridModel = gridModel;
             _tankFactory = tankFactory;
+            _mergeModel = mergeModel;
         }
 
         public void Start()
@@ -57,10 +57,12 @@ namespace MiniIT.Controllers
                 return;
             }
 
-            var tankData = _tankFactory.Get(0, freeCell);
+            var newTankData = _tankFactory.Get(0, freeCell);
             
             freeCell.IsBusy = true;
-            freeCell.AddTank(tankData);
+            freeCell.AddTank(newTankData);
+            
+            _mergeModel.RegisterNewData(newTankData);
         }
     }
 }

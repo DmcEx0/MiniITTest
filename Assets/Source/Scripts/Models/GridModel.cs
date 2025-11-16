@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using MiniIT.Configs;
 using MiniIT.Data;
 using UnityEngine;
+using Object = UnityEngine.Object;
+using Random = UnityEngine.Random;
 
 namespace MiniIT.Models
 {
@@ -23,7 +25,7 @@ namespace MiniIT.Models
         public bool TryGetFreeCell(out CellData freeCell)
         {
             Shuffle(_cellsData);
-            
+
             for (int i = 0; i < _cellsData.Count; i++)
             {
                 if (_cellsData[i].IsBusy == false)
@@ -32,7 +34,7 @@ namespace MiniIT.Models
                     return true;
                 }
             }
-            
+
             freeCell = default;
             return false;
         }
@@ -69,7 +71,7 @@ namespace MiniIT.Models
                 }
             }
         }
-        
+
         private void Shuffle<T>(IList<T> cells)
         {
             int index = cells.Count;
@@ -79,11 +81,7 @@ namespace MiniIT.Models
                 index--;
 
                 int randomElement = Random.Range(0, index + 1);
-
-                var card = cells[randomElement];
-
-                cells[randomElement] = cells[index];
-                cells[index] = card;
+                (cells[randomElement], cells[index]) = (cells[index], cells[randomElement]);
             }
         }
     }

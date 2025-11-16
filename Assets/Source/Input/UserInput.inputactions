@@ -23,6 +23,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ClickPointer",
+                    "type": "Value",
+                    "id": "83402a4c-591a-4f44-9449-2ab7b21b4909",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -39,7 +48,18 @@
                 },
                 {
                     "name": "",
-                    "id": "44f58bb3-6d49-4865-8d6f-6702bfb66c42",
+                    "id": "1b27e269-e7b7-4013-9481-aa31135b7723",
+                    "path": "<Pointer>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ClickPointer",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cdeedab9-ff2c-4552-bf55-aae414ff2e38",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",

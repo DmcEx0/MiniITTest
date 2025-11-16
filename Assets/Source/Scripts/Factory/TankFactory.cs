@@ -16,7 +16,8 @@ namespace MiniIT.Factory
 
         public MergedTankData Get(int level , CellData freeCell)
         {
-            var tank = Object.Instantiate(_mergedTankConfig.MergedTanksData[0].TankView, freeCell.CellView.transform);
+            // TODO: Find Level
+            var tank = Object.Instantiate(_mergedTankConfig.MergedTanksData[level].TankView, freeCell.CellView.transform);
             tank.transform.localPosition = Vector3.zero;
             
             var defaultData = _mergedTankConfig.MergedTanksData.FirstOrDefault(data => data.Level == level);
