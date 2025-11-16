@@ -105,15 +105,6 @@ namespace MiniIT.Input
                 },
                 {
                     ""name"": ""Drag"",
-                    ""type"": ""Button"",
-                    ""id"": ""dae5c2c2-3a75-4786-9de1-2c494c3374cf"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""ClickPointer"",
                     ""type"": ""Value"",
                     ""id"": ""83402a4c-591a-4f44-9449-2ab7b21b4909"",
                     ""expectedControlType"": """",
@@ -125,8 +116,8 @@ namespace MiniIT.Input
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""a4b83536-d164-499f-b302-2946318b8dfd"",
-                    ""path"": """",
+                    ""id"": ""1b27e269-e7b7-4013-9481-aa31135b7723"",
+                    ""path"": ""<Pointer>/position"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -136,19 +127,19 @@ namespace MiniIT.Input
                 },
                 {
                     ""name"": """",
-                    ""id"": ""1b27e269-e7b7-4013-9481-aa31135b7723"",
-                    ""path"": ""<Pointer>/position"",
+                    ""id"": ""cdeedab9-ff2c-4552-bf55-aae414ff2e38"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ClickPointer"",
+                    ""action"": ""Click"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""cdeedab9-ff2c-4552-bf55-aae414ff2e38"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""id"": ""b9430919-78e9-4cdc-8e27-40208bf1c2d1"",
+                    ""path"": ""<Pointer>/press"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -165,7 +156,6 @@ namespace MiniIT.Input
             m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
             m_Player_Click = m_Player.FindAction("Click", throwIfNotFound: true);
             m_Player_Drag = m_Player.FindAction("Drag", throwIfNotFound: true);
-            m_Player_ClickPointer = m_Player.FindAction("ClickPointer", throwIfNotFound: true);
         }
 
         ~@UserInput()
@@ -248,7 +238,6 @@ namespace MiniIT.Input
         private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
         private readonly InputAction m_Player_Click;
         private readonly InputAction m_Player_Drag;
-        private readonly InputAction m_Player_ClickPointer;
         /// <summary>
         /// Provides access to input actions defined in input action map "Player".
         /// </summary>
@@ -268,10 +257,6 @@ namespace MiniIT.Input
             /// Provides access to the underlying input action "Player/Drag".
             /// </summary>
             public InputAction @Drag => m_Wrapper.m_Player_Drag;
-            /// <summary>
-            /// Provides access to the underlying input action "Player/ClickPointer".
-            /// </summary>
-            public InputAction @ClickPointer => m_Wrapper.m_Player_ClickPointer;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
@@ -304,9 +289,6 @@ namespace MiniIT.Input
                 @Drag.started += instance.OnDrag;
                 @Drag.performed += instance.OnDrag;
                 @Drag.canceled += instance.OnDrag;
-                @ClickPointer.started += instance.OnClickPointer;
-                @ClickPointer.performed += instance.OnClickPointer;
-                @ClickPointer.canceled += instance.OnClickPointer;
             }
 
             /// <summary>
@@ -324,9 +306,6 @@ namespace MiniIT.Input
                 @Drag.started -= instance.OnDrag;
                 @Drag.performed -= instance.OnDrag;
                 @Drag.canceled -= instance.OnDrag;
-                @ClickPointer.started -= instance.OnClickPointer;
-                @ClickPointer.performed -= instance.OnClickPointer;
-                @ClickPointer.canceled -= instance.OnClickPointer;
             }
 
             /// <summary>
@@ -381,13 +360,6 @@ namespace MiniIT.Input
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnDrag(InputAction.CallbackContext context);
-            /// <summary>
-            /// Method invoked when associated input action "ClickPointer" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-            /// </summary>
-            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-            void OnClickPointer(InputAction.CallbackContext context);
         }
     }
 }

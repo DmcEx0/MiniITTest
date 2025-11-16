@@ -84,7 +84,7 @@ namespace MiniIT.Input
 
         private void FindDrageable()
         {
-            var pointerPosition = _userInput.Player.ClickPointer.ReadValue<Vector2>();
+            var pointerPosition = _userInput.Player.Drag.ReadValue<Vector2>();
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(pointerPosition);
 
             RaycastHit2D hit = Physics2D.Raycast(worldPosition, Vector2.zero);
@@ -102,7 +102,7 @@ namespace MiniIT.Input
 
         private Vector3 GetMouseWorldPos()
         {
-            Vector3 mousePoint = _userInput.Player.ClickPointer.ReadValue<Vector2>();
+            Vector3 mousePoint = _userInput.Player.Drag.ReadValue<Vector2>();
 
             mousePoint.z = 0f;
             return Camera.main.ScreenToWorldPoint(mousePoint);
