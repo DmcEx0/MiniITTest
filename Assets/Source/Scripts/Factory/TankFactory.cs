@@ -1,7 +1,9 @@
+using System.Linq;
 using MiniIT.Configs;
-using MiniIT.Factory;
+using MiniIT.Data;
+using UnityEngine;
 
-namespace MiniIT
+namespace MiniIT.Factory
 {
     public class TankFactory : GameObjectFactory
     {
@@ -12,9 +14,21 @@ namespace MiniIT
             _mergedTankConfig = mergedTankConfig;
         }
 
-        public MergedTankData Get()
+        public MergedTankData Get(int level , CellData freeCell)
         {
-            return default;
+            var tank = Object.Instantiate(_mergedTankConfig.MergedTanksData[0].TankView, freeCell.CellView.transform);
+            tank.transform.localPosition = Vector3.zero;
+            
+            var defaultData = _mergedTankConfig.MergedTanksData.FirstOrDefault(data => data.Level == level);
+
+            if (defaultData == null)
+            {
+                return null;
+            }
+            
+            var tankData = new MergedTankData(tank, defaultData.Level, defaultData.Damage);
+            
+            return tankData;
         }
     }
 }

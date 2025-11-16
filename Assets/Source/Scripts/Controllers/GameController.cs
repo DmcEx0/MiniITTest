@@ -1,5 +1,6 @@
 using MiniIT.Configs;
 using MiniIT.Data;
+using MiniIT.Factory;
 using MiniIT.Models;
 using UnityEngine;
 using VContainer.Unity;
@@ -10,6 +11,7 @@ namespace MiniIT.Controllers
     {
         private readonly GameConfig _gameConfig;
         private readonly MergedTankConfig _mergedTankConfig;
+        private readonly TankFactory _tankFactory;
 
         private readonly TanksModel _tanksModel;
         private readonly GameFieldModel _gameFieldModel;
@@ -18,13 +20,14 @@ namespace MiniIT.Controllers
         private float _accumulatedTimeForSpawnTank;
 
         public GameController(GameConfig gameConfig, MergedTankConfig mergedTankConfig, TanksModel tanksModel,
-            GameFieldModel gameFieldModel, GridModel gridModel)
+            GameFieldModel gameFieldModel, GridModel gridModel, TankFactory tankFactory)
         {
             _gameConfig = gameConfig;
             _mergedTankConfig = mergedTankConfig;
             _tanksModel = tanksModel;
             _gameFieldModel = gameFieldModel;
             _gridModel = gridModel;
+            _tankFactory = tankFactory;
         }
 
         public void Start()
@@ -54,11 +57,10 @@ namespace MiniIT.Controllers
                 return;
             }
 
-            var tank = Object.Instantiate(_mergedTankConfig.MergedTanksData[0].TankView, freeCell.CellView.transform);
-            
-            tank.transform.localPosition = Vector3.zero;
+            var tankData = _tankFactory.Get(0, freeCell);
             
             freeCell.IsBusy = true;
+            freeCell.AddTank(tankData);
         }
     }
 }

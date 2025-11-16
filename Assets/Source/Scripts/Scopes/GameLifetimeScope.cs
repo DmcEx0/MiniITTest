@@ -1,5 +1,6 @@
 using MiniIT.Configs;
 using MiniIT.Controllers;
+using MiniIT.Factory;
 using MiniIT.Models;
 using UnityEngine;
 using VContainer;
@@ -20,6 +21,7 @@ namespace MiniIT.Scopes
             builder.Register<GameFieldModel>(Lifetime.Singleton);
             builder.Register<TanksModel>(Lifetime.Singleton);
             builder.Register<GridModel>(Lifetime.Singleton);
+            builder.Register<TankFactory>(Lifetime.Singleton);
             
             builder.RegisterEntryPoint<GameController>();
         }

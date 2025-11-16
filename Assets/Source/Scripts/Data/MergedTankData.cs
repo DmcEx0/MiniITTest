@@ -1,10 +1,18 @@
-using UnityEngine;
+using MiniIT.Views;
 
-namespace MiniIT
+namespace MiniIT.Data
 {
-    public struct MergedTankData
+    public class MergedTankData
     {
-        public int Level { get; set; }
-        public float Damage { get; set; }
+        public readonly MergedTankView View;
+        public readonly int Level;
+        public readonly float Damage;
+        
+        public MergedTankData(MergedTankView view, int level, float damage)
+        {
+            View = view;
+            Level = level;
+            Damage = damage;
+        }
     }
 }
