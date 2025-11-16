@@ -16,6 +16,7 @@ namespace MiniIT.Scopes
         [SerializeField] private MergedTankConfig _mergedTankConfig;
         [SerializeField] private GridConfig _gridConfig;
         [SerializeField] private AnimationsConfig _animationsConfig;
+        [SerializeField] private Transform _poolContainer;
         [SerializeField] private ParticleSystem _particleSystem;
         
         protected override void Configure(IContainerBuilder builder)
@@ -28,7 +29,7 @@ namespace MiniIT.Scopes
             builder.Register<GridModel>(Lifetime.Singleton);
             builder.Register<MergeModel>(Lifetime.Singleton);
             
-            builder.Register<TankFactory>(Lifetime.Singleton);
+            builder.Register<TankFactory>(Lifetime.Singleton).WithParameter(_poolContainer);
             builder.Register<AsyncAnimationProvider>(Lifetime.Singleton);
             
             builder.RegisterEntryPoint<GameController>();

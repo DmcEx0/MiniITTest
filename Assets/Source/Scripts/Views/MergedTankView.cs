@@ -1,9 +1,10 @@
 using System;
+using MiniIT.Factory;
 using UnityEngine;
 
 namespace MiniIT.Views
 {
-    public class MergedTankView : MonoBehaviour, IDrageable, IMergeable
+    public class MergedTankView : PoolableObject, IDrageable, IMergeable
     {
         [SerializeField] private SpriteRenderer _renderer;
         [field: SerializeField] public Collider2D Collider { get; private set; }
@@ -39,6 +40,11 @@ namespace MiniIT.Views
         public void EndDrag()
         {
             CheckOtherColliders();
+        }
+
+        protected override void OnDisabled()
+        {
+            ResetToDefault();
         }
 
         private void CheckOtherColliders()

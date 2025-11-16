@@ -117,8 +117,7 @@ namespace MiniIT.Controllers
             Debug.Log("[MergeController] Move To: " + secondData.Name);
 #endif
 
-            firstData.ChangeTank(null);
-            firstData.IsBusy = false;
+            firstData.ReleaseBusyTank();
         }
     }
 }

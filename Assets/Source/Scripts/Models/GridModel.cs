@@ -65,7 +65,7 @@ namespace MiniIT.Models
                     cellInstance.transform.localScale =
                         new Vector3(_gridConfig.CellSize, _gridConfig.CellSize, _gridConfig.CellSize);
 
-                    var newCellData = new CellData(cellInstance, false);
+                    var newCellData = new CellData(cellInstance);
                     
 #if ENABLE_DEBUG
                     cellInstance.name = $"Cell {i}-{j}";

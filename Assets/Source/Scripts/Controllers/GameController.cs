@@ -32,6 +32,8 @@ namespace MiniIT.Controllers
 
         public void Initialize()
         {
+            _tankFactory.Prepare();
+            
             _mergeModel.MergedSuccess += SpawnTank;
             _canSpawnTank = true;
         }
@@ -45,6 +47,7 @@ namespace MiniIT.Controllers
         public void Start()
         {
             _gridModel.BuildGrid();
+
 
             for (int i = 0; i < _gameConfig.InitialTankCount; i++)
             {
@@ -81,7 +84,6 @@ namespace MiniIT.Controllers
                 return;
             }
 
-            cellData.IsBusy = true;
             cellData.ChangeTank(newTankData);
 
             _mergeModel.RegisterNewData(newTankData);

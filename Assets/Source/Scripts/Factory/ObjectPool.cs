@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace MiniIT.Factory
 {
-    public class ObjectPool<T> where T : MonoBehaviour
+    public class ObjectPool<T> where T : PoolableObject
     {
         private readonly T _prefab;
         private readonly int _poolSize;
@@ -25,18 +25,38 @@ namespace MiniIT.Factory
             _pool = new List<T>();
         }
 
-        public T GetAvailable()
+        public T Get()
+        {
+            var instance = GetAvailable();
+
+            instance.Disabled += OnDisable;
+
+            return instance;
+        }
+
+        private void OnDisable(PoolableObject obj)
+        {
+            obj.Disabled -= OnDisable;
+            
+            obj.gameObject.SetActive(false);
+            obj.transform.SetParent(_parent);
+        }
+
+        private T GetAvailable()
         {
             foreach (var instance in _pool)
             {
                 if (instance.gameObject.activeSelf == false)
                 {
+                    instance.gameObject.SetActive(true);
+                    
                     return instance;
                 }
             }
 
             var newInstance = GameObject.Instantiate(_prefab, _parent);
             _pool.Add(newInstance);
+            
             return newInstance;
         }
 
