@@ -22,7 +22,6 @@ namespace MiniIT.Scopes
             builder.RegisterComponent(_mergedTankConfig);
             builder.RegisterComponent(_gridConfig);
 
-            builder.Register<TanksModel>(Lifetime.Singleton);
             builder.Register<GridModel>(Lifetime.Singleton);
             builder.Register<MergeModel>(Lifetime.Singleton);
             

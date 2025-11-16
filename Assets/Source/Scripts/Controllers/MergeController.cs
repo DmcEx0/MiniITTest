@@ -1,5 +1,6 @@
 using System.Linq;
 using Cysharp.Threading.Tasks.Linq;
+using MiniIT.Configs;
 using MiniIT.Data;
 using MiniIT.Models;
 using MiniIT.Views;
@@ -10,13 +11,16 @@ namespace MiniIT.Controllers
 {
     public class MergeController : IInitializable
     {
+        private readonly AnimationsConfig _animationsConfig;
+        
         private readonly GridModel _gridModel;
         private readonly MergeModel _mergeModel;
 
-        public MergeController(GridModel gridModel, MergeModel mergeModel)
+        public MergeController(GridModel gridModel, MergeModel mergeModel, AnimationsConfig animationsConfig)
         {
             _gridModel = gridModel;
             _mergeModel = mergeModel;
+            _animationsConfig = animationsConfig;
         }
 
         public void Initialize()
