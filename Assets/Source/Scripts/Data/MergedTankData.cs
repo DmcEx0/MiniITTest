@@ -5,15 +5,23 @@ namespace MiniIT.Data
 {
     public class MergedTankData
     {
-        public readonly MergedTankView View;
+        private readonly MergedTankView _view;
+        
         public readonly int Level;
         public readonly float Damage;
+
+        public IMergeable TankMerged => _view;
         
         public MergedTankData(MergedTankView view, int level, float damage)
         {
-            View = view;
+            _view = view;
             Level = level;
             Damage = damage;
+        }
+        
+        public void Disable()
+        {
+            _view.Disable();
         }
     }
 }

@@ -8,6 +8,7 @@ namespace MiniIT.Data
         public bool IsBusy { get; private set; }
         public CellView CellView { get; private set; }
         public MergedTankData TankData { get; private set; }
+        
 #if ENABLE_DEBUG
         public string Name {get; set;}
 #endif
@@ -24,7 +25,7 @@ namespace MiniIT.Data
                 return;
             }
             
-            TankData.View.Disable();
+            TankData.Disable();
             TankData = null;
         }
 
