@@ -15,4 +15,4 @@ MonoBehaviour:
   <GridSize>k__BackingField: {x: 5, y: 5}
   <CellPrefab>k__BackingField: {fileID: 3770876375502029150, guid: c1688b2697d57dd41a7e09f98e6342f7, type: 3}
   <CellSize>k__BackingField: 0.5
-  <CellSpacing>k__BackingField: 0.2
+  <CellSpacing>k__BackingField: 0.35

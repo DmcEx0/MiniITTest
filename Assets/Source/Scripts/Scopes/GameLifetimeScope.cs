@@ -16,6 +16,7 @@ namespace MiniIT.Scopes
         [SerializeField] private MergedTankConfig _mergedTankConfig;
         [SerializeField] private GridConfig _gridConfig;
         [SerializeField] private AnimationsConfig _animationsConfig;
+        [SerializeField] private ParticleSystem _particleSystem;
         
         protected override void Configure(IContainerBuilder builder)
         {
@@ -31,7 +32,7 @@ namespace MiniIT.Scopes
             builder.Register<AsyncAnimationProvider>(Lifetime.Singleton);
             
             builder.RegisterEntryPoint<GameController>();
-            builder.RegisterEntryPoint<MergeController>();
+            builder.RegisterEntryPoint<MergeController>().WithParameter(_particleSystem);
             builder.RegisterEntryPoint<PlayerInputController>();
         }
     }

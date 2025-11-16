@@ -18,11 +18,15 @@ namespace MiniIT.Controllers
         private readonly GridModel _gridModel;
         private readonly MergeModel _mergeModel;
 
-        public MergeController(GridModel gridModel, MergeModel mergeModel, AsyncAnimationProvider animationProvider)
+        private ParticleSystem _particleSystem;
+
+        public MergeController(GridModel gridModel, MergeModel mergeModel, AsyncAnimationProvider animationProvider,
+            ParticleSystem particleSystem)
         {
             _gridModel = gridModel;
             _mergeModel = mergeModel;
             _animationProvider = animationProvider;
+            _particleSystem = particleSystem;
         }
 
         public void Initialize()
@@ -80,13 +84,13 @@ namespace MiniIT.Controllers
             secondaryTank.Merging -= TryMerge;
 
             firstData.TankData.View.transform.position = secondData.TankData.View.transform.position;
-            
+
             var center =
                 (firstData.TankData.View.transform.position.x + secondData.TankData.View.transform.position.x) * 0.5f;
-            
+
             firstData.TankData.View.Collider.enabled = false;
             secondData.TankData.View.Collider.enabled = false;
-            
+
             var leftTask = _animationProvider.CallInBounceEffectAsync(
                 firstData.TankData.View.transform,
                 AnimationsType.Merge,
@@ -104,6 +108,9 @@ namespace MiniIT.Controllers
             );
 
             await UniTask.WhenAll(leftTask, rightTask);
+            
+            var a = (firstData.TankData.View.transform.position + secondData.TankData.View.transform.position) * 0.5f;
+            Object.Instantiate(_particleSystem, a, Quaternion.identity);
 
             _mergeModel.OnMergedSuccess(firstData.TankData.Level, secondData);
 

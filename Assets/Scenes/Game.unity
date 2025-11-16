@@ -372,6 +372,7 @@ MonoBehaviour:
   _mergedTankConfig: {fileID: 11400000, guid: bc0804afb33ee0b419f8e11acc5b5498, type: 2}
   _gridConfig: {fileID: 11400000, guid: 2644c5ebc00abf84e99a90fb1c0a6bb3, type: 2}
   _animationsConfig: {fileID: 11400000, guid: f0277c7eaa40f1645b27126e38486df7, type: 2}
+  _particleSystem: {fileID: 19864940, guid: 82bf03917e16d3d4cad30518cca28308, type: 3}
 --- !u!4 &809523124
 Transform:
   m_ObjectHideFlags: 0
