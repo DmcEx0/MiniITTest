@@ -48,9 +48,11 @@ namespace MiniIT.Controllers
                 return false;
             }
 
-            Debug.Log("First: " + firstData.Name);
-            Debug.Log("Second: " + secondData.Name);
-            
+#if ENABLE_DEBUG
+            Debug.Log("[MergeController] First Data: " + firstData.Name);
+            Debug.Log("[MergeController] Second Data: " + secondData.Name);
+#endif
+
             var firstTankData = firstData.TankData;
             var secondaryTankData = secondData.TankData;
 
@@ -61,7 +63,9 @@ namespace MiniIT.Controllers
 
                 _mergeModel.OnMergedSuccess(firstTankData.Level, secondData);
 
-                Debug.Log("Move To: " + secondData.Name);
+#if ENABLE_DEBUG
+                Debug.Log("[MergeController] Move To: " + secondData.Name);
+#endif
 
                 firstData.ChangeTank(null);
 

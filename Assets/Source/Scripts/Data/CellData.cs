@@ -5,11 +5,12 @@ namespace MiniIT.Data
 {
     public class CellData
     {
-        public bool IsBusy {get; set;}
+        public bool IsBusy { get; set; }
+        public CellView CellView { get; private set; }
+        public MergedTankData TankData { get; private set; }
+#if ENABLE_DEBUG
         public string Name {get; set;}
-        public CellView CellView {get; private set;}
-        public MergedTankData TankData {get; private set;}
-        
+#endif
         public CellData(CellView cellView, bool isBusy)
         {
             CellView = cellView;
@@ -23,7 +24,7 @@ namespace MiniIT.Data
                 Object.Destroy(TankData.View.gameObject);
                 TankData = null;
             }
-            
+
             TankData = tankData;
         }
     }
