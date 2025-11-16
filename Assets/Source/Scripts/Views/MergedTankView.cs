@@ -9,7 +9,7 @@ namespace MiniIT.Views
         private bool _canMerge = false;
 
         [field: SerializeField] public Collider2D Collider { get; private set; }
-        public Action<MergedTankView, MergedTankView> Merging { get; set; }
+        public Action<IMergeable, IMergeable> Merging { get; set; }
 
         public void StartDrag(Vector3 pointerPosition)
         {
@@ -35,10 +35,10 @@ namespace MiniIT.Views
                 return;
             }
             
-            if (other.TryGetComponent(out MergedTankView mergedTankView))
+            if (other.TryGetComponent(out IMergeable mergeable))
             {
                 Collider.enabled = false;
-                Merging?.Invoke(this, mergedTankView);
+                Merging?.Invoke(this, mergeable);
             }
         }
     }
