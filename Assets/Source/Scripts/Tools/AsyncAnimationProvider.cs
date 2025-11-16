@@ -8,7 +8,7 @@ namespace MiniIT.Tools
 {
     public class AsyncAnimationProvider
     {
-        private const float OffsetX = 0.3f;
+        private const float OffsetX = 0.4f;
         
         private readonly AnimationsConfig _animationsConfig;
 
@@ -37,8 +37,7 @@ namespace MiniIT.Tools
                 .SetEase(data.CurveStep1)
                 .AwaitForComplete(TweenCancelBehaviour.CompleteAndCancelAwait, token);
 
-            float finalX = centerX;
-            await target.DOMoveX(finalX, duration * 0.6f)
+            await target.DOMoveX(centerX, duration)
                 .SetEase(data.CurveStep2)
                 .AwaitForComplete(TweenCancelBehaviour.CompleteAndCancelAwait, token);
         }

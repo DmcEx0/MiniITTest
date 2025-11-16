@@ -84,6 +84,9 @@ namespace MiniIT.Controllers
             var center =
                 (firstData.TankData.View.transform.position.x + secondData.TankData.View.transform.position.x) * 0.5f;
             
+            firstData.TankData.View.Collider.enabled = false;
+            secondData.TankData.View.Collider.enabled = false;
+            
             var leftTask = _animationProvider.CallInBounceEffectAsync(
                 firstData.TankData.View.transform,
                 AnimationsType.Merge,

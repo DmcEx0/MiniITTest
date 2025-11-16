@@ -11,31 +11,23 @@ namespace MiniIT.Input
     public class PlayerInputController : IInitializable, ITickable, IDisposable
     {
         private readonly UserInput _userInput;
-        private readonly MergeModel _mergeModel;
 
         private IDrageable _findedDrageable;
 
         private bool _isProcess = false;
 
-        public PlayerInputController(MergeModel mergeModel)
+        public PlayerInputController()
         {
-            _mergeModel = mergeModel;
             _userInput = new UserInput();
         }
 
         public void Initialize()
         {
-            _mergeModel.MergedSuccess += UpdateDrageableReference;
             _userInput.Enable();
 
             _userInput.Player.Click.started += StartDrag;
             _userInput.Player.Click.performed += ProcessDrag;
             _userInput.Player.Click.canceled += EndDrag;
-        }
-
-        private void UpdateDrageableReference(int arg1, CellData arg2)
-        {
-            _findedDrageable = null;
         }
 
         public void Tick()
@@ -50,8 +42,6 @@ namespace MiniIT.Input
 
         public void Dispose()
         {
-            _mergeModel.MergedSuccess -= UpdateDrageableReference;
-            
             _userInput.Player.Click.started -= StartDrag;
             _userInput.Player.Click.performed -= ProcessDrag;
             _userInput.Player.Click.canceled -= EndDrag;

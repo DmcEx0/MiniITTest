@@ -41,7 +41,7 @@ namespace MiniIT.Controllers
         {
             _gridModel.BuildGrid();
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 10; i++)
             {
                 if (_gridModel.TryGetFreeCell(out CellData freeCell) == false)
                 {
