@@ -9,7 +9,8 @@ namespace MiniIT.Configs
         [field: SerializeField] public AnimationsType Type;
 
         [field: Space]
-        [field: SerializeField] public AnimationCurve AnimationCurve  { get; private set; }
+        [field: SerializeField] public AnimationCurve CurveStep1  { get; private set; }
+        [field: SerializeField] public AnimationCurve CurveStep2  { get; private set; }
         [field: SerializeField] public float Duration { get; private set; }
     }
 }

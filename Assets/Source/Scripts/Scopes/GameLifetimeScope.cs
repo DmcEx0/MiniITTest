@@ -15,12 +15,14 @@ namespace MiniIT.Scopes
         [SerializeField] private GameConfig _gameConfig;
         [SerializeField] private MergedTankConfig _mergedTankConfig;
         [SerializeField] private GridConfig _gridConfig;
+        [SerializeField] private AnimationsConfig _animationsConfig;
         
         protected override void Configure(IContainerBuilder builder)
         {
             builder.RegisterComponent(_gameConfig);
             builder.RegisterComponent(_mergedTankConfig);
             builder.RegisterComponent(_gridConfig);
+            builder.RegisterComponent(_animationsConfig);
 
             builder.Register<GridModel>(Lifetime.Singleton);
             builder.Register<MergeModel>(Lifetime.Singleton);

@@ -14,23 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animationsData:
   - Type: 1
-    <AnimationCurve>k__BackingField:
+    <CurveStep1>k__BackingField:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
         value: 1
-        inSlope: 0.80562484
-        outSlope: 0.80562484
+        inSlope: 0.09882911
+        outSlope: 0.09882911
         tangentMode: 34
         weightedMode: 0
         inWeight: 0
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.49628526
-        value: 1.3998197
-        inSlope: 0.005941242
-        outSlope: 0.005941242
+        time: 0.5083333
+        value: 1.0502381
+        inSlope: -0.0016750693
+        outSlope: -0.0016750693
         tangentMode: 34
         weightedMode: 0
         inWeight: 0.33333334
@@ -38,8 +38,32 @@ MonoBehaviour:
       - serializedVersion: 3
         time: 1
         value: 1
-        inSlope: -0.79374236
-        outSlope: -0.79374236
+        inSlope: -0.10217925
+        outSlope: -0.10217925
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    <CurveStep2>k__BackingField:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: -0.0004043579
+        inSlope: 0.0005176839
+        outSlope: 0.0005176839
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.99726766
+        value: 0.000111911504
+        inSlope: 0.0005176839
+        outSlope: 0.0005176839
         tangentMode: 34
         weightedMode: 0
         inWeight: 0.33333334
