@@ -2,7 +2,6 @@ using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using Cysharp.Threading.Tasks.Linq;
-using MiniIT.Configs;
 using MiniIT.Data;
 using MiniIT.Models;
 using MiniIT.Tools;
@@ -83,16 +82,16 @@ namespace MiniIT.Controllers
             dragTank.Merging -= TryMerge;
             secondaryTank.Merging -= TryMerge;
 
-            firstData.TankData.View.transform.position = secondData.TankData.View.transform.position;
+            firstData.TankData.View.Transform.position = secondData.TankData.View.Transform.position;
 
             var center =
-                (firstData.TankData.View.transform.position.x + secondData.TankData.View.transform.position.x) * 0.5f;
+                (firstData.TankData.View.Transform.position.x + secondData.TankData.View.Transform.position.x) * 0.5f;
 
             firstData.TankData.View.Collider.enabled = false;
             secondData.TankData.View.Collider.enabled = false;
 
             var leftTask = _animationProvider.CallInBounceEffectAsync(
-                firstData.TankData.View.transform,
+                firstData.TankData.View.Transform,
                 AnimationsType.Merge,
                 DirectionType.Left,
                 center,
@@ -100,7 +99,7 @@ namespace MiniIT.Controllers
             );
 
             var rightTask = _animationProvider.CallInBounceEffectAsync(
-                secondData.TankData.View.transform,
+                secondData.TankData.View.Transform,
                 AnimationsType.Merge,
                 DirectionType.Right,
                 center,
@@ -109,7 +108,7 @@ namespace MiniIT.Controllers
 
             await UniTask.WhenAll(leftTask, rightTask);
             
-            var a = (firstData.TankData.View.transform.position + secondData.TankData.View.transform.position) * 0.5f;
+            var a = (firstData.TankData.View.Transform.position + secondData.TankData.View.Transform.position) * 0.5f;
             Object.Instantiate(_particleSystem, a, Quaternion.identity);
 
             _mergeModel.OnMergedSuccess(firstData.TankData.Level, secondData);
@@ -119,6 +118,7 @@ namespace MiniIT.Controllers
 #endif
 
             firstData.ChangeTank(null);
+            firstData.IsBusy = false;
         }
     }
 }

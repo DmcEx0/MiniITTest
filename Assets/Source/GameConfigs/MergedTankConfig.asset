@@ -25,3 +25,6 @@ MonoBehaviour:
   - <TankView>k__BackingField: {fileID: -6576394431907424566, guid: fa4e8a9e3e3257042ac87dbaff7a4bcd, type: 3}
     <Level>k__BackingField: 3
     <Damage>k__BackingField: 15
+  - <TankView>k__BackingField: {fileID: -6576394431907424566, guid: 16064f9110c364446868baf4ae87e993, type: 3}
+    <Level>k__BackingField: 4
+    <Damage>k__BackingField: 15

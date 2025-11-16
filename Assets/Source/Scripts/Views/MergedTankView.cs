@@ -5,11 +5,24 @@ namespace MiniIT.Views
 {
     public class MergedTankView : MonoBehaviour, IDrageable, IMergeable
     {
+        [SerializeField] private SpriteRenderer _renderer;
+        [field: SerializeField] public Collider2D Collider { get; private set; }
+        
         private Vector3 _startPosition;
         private Vector3 _offset;
-
-        [field: SerializeField] public Collider2D Collider { get; private set; }
+        
+        public Transform Transform { get; private set; }
         public Func<IMergeable, IMergeable, bool> Merging { get; set; }
+
+        private void Awake()
+        {
+            Transform = transform;
+        }
+
+        public void Configure(Sprite sprite)
+        {
+            _renderer.sprite = sprite;
+        }
 
         public void StartDrag(Vector3 pointerPosition)
         {

@@ -1,4 +1,5 @@
 using System;
+using Cysharp.Threading.Tasks;
 using MiniIT.Configs;
 using MiniIT.Data;
 using MiniIT.Factory;
@@ -8,15 +9,17 @@ using VContainer.Unity;
 
 namespace MiniIT.Controllers
 {
-    public class GameController : IInitializable, IStartable, ITickable, IDisposable
+    public class GameController : IInitializable, IStartable, IDisposable
     {
+        private const int FirstTankLevel = 0;
+
         private readonly GameConfig _gameConfig;
         private readonly TankFactory _tankFactory;
 
         private readonly MergeModel _mergeModel;
         private readonly GridModel _gridModel;
 
-        private float _accumulatedTimeForSpawnTank;
+        private bool _canSpawnTank;
 
         public GameController(GameConfig gameConfig, GridModel gridModel, TankFactory tankFactory,
             MergeModel mergeModel)
@@ -30,36 +33,45 @@ namespace MiniIT.Controllers
         public void Initialize()
         {
             _mergeModel.MergedSuccess += SpawnTank;
+            _canSpawnTank = true;
         }
 
         public void Dispose()
         {
             _mergeModel.MergedSuccess -= SpawnTank;
+            _canSpawnTank = false;
         }
 
         public void Start()
         {
             _gridModel.BuildGrid();
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < _gameConfig.InitialTankCount; i++)
             {
-                if (_gridModel.TryGetFreeCell(out CellData freeCell) == false)
-                {
-                    return;
-                }
+                SpawnOnCell();
+            }
 
-                SpawnTank(0, freeCell);
+            SpawnAsync().Forget();
+        }
+
+        private async UniTask SpawnAsync()
+        {
+            while (_canSpawnTank)
+            {
+                await UniTask.Delay(TimeSpan.FromMilliseconds(_gameConfig.MillisecondsToSpawnNextTank));
+
+                SpawnOnCell();
             }
         }
 
-        public void Tick()
+        private void SpawnOnCell()
         {
-            _accumulatedTimeForSpawnTank += Time.deltaTime;
-
-            if (_accumulatedTimeForSpawnTank >= _gameConfig.SpawnTankDelay)
+            if (_gridModel.TryGetFreeCell(out CellData freeCell) == false)
             {
-                _accumulatedTimeForSpawnTank = 0;
+                return;
             }
+
+            SpawnTank(FirstTankLevel, freeCell);
         }
 
         private void SpawnTank(int level, CellData cellData)
