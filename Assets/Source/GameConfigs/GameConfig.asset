@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff12f7b5546eaa945898fdc1aa7e26ff, type: 3}
-  m_Name: MergedCarConfig
-  m_EditorClassIdentifier: Assembly-CSharp::MiniIT.Configs.MergedCarConfig
-  _mergedTanksData: []
+  m_Script: {fileID: 11500000, guid: cd44eaa5c671c894ab26d9edaf8066ce, type: 3}
+  m_Name: GameConfig
+  m_EditorClassIdentifier: Assembly-CSharp::MiniIT.Configs.GameConfig
+  <GameFieldSize>k__BackingField: {x: 0, y: 0}
+  <GameCellScale>k__BackingField: 0
