@@ -2,7 +2,7 @@ using MiniIT.Views;
 
 namespace MiniIT.Data
 {
-    public struct CellData
+    public class CellData
     {
         public bool IsBusy {get; set;}
         public CellView CellView {get; private set;}

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using MiniIT.Configs;
 using MiniIT.Data;
 using UnityEngine;
@@ -9,31 +8,35 @@ namespace MiniIT.Models
     public class GridModel
     {
         private readonly GameConfig _gameConfig;
+
         private readonly List<CellData> _cellsData = null;
-        private readonly List<CellData> _freeCells = null;
-        
+
         public IReadOnlyList<CellData> CellsData => _cellsData;
 
         public GridModel(GameConfig gameConfig)
         {
             _gameConfig = gameConfig;
-            _cellsData = new ();
-            _freeCells = new ();
+
+            _cellsData = new List<CellData>();
         }
 
-        public IReadOnlyList<CellData> GetFreeCells()
+        public bool TryGetFreeCell(out CellData freeCell)
         {
-            foreach (var cellData in _cellsData)
+            Shuffle(_cellsData);
+            
+            for (int i = 0; i < _cellsData.Count; i++)
             {
-                if (cellData.IsBusy == false)
+                if (_cellsData[i].IsBusy == false)
                 {
-                    _freeCells.Add(cellData);
+                    freeCell = _cellsData[i];
+                    return true;
                 }
             }
             
-            return _freeCells;
+            freeCell = default;
+            return false;
         }
-        
+
         public void BuildGrid()
         {
             float width = _gameConfig.GridSize.x;
@@ -61,9 +64,26 @@ namespace MiniIT.Models
                         new Vector3(_gameConfig.CellSize, _gameConfig.CellSize, _gameConfig.CellSize);
 
                     var newCellData = new CellData(cellInstance, false);
-                    
+
                     _cellsData.Add(newCellData);
                 }
+            }
+        }
+        
+        private void Shuffle<T>(IList<T> cells)
+        {
+            int index = cells.Count;
+
+            while (index > 1)
+            {
+                index--;
+
+                int randomElement = Random.Range(0, index + 1);
+
+                var card = cells[randomElement];
+
+                cells[randomElement] = cells[index];
+                cells[index] = card;
             }
         }
     }

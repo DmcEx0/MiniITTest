@@ -1,4 +1,5 @@
 using MiniIT.Configs;
+using MiniIT.Data;
 using MiniIT.Models;
 using UnityEngine;
 using VContainer.Unity;
@@ -13,7 +14,7 @@ namespace MiniIT.Controllers
         private readonly TanksModel _tanksModel;
         private readonly GameFieldModel _gameFieldModel;
         private readonly GridModel _gridModel;
-        
+
         private float _accumulatedTimeForSpawnTank;
 
         public GameController(GameConfig gameConfig, MergedTankConfig mergedTankConfig, TanksModel tanksModel,
@@ -29,6 +30,11 @@ namespace MiniIT.Controllers
         public void Start()
         {
             _gridModel.BuildGrid();
+
+            for (int i = 0; i < 5; i++)
+            {
+                SpawnTank();
+            }
         }
 
         public void Tick()
@@ -37,19 +43,22 @@ namespace MiniIT.Controllers
 
             if (_accumulatedTimeForSpawnTank >= _gameConfig.SpawnTankDelay)
             {
-                
-                
                 _accumulatedTimeForSpawnTank = 0;
             }
         }
 
         private void SpawnTank()
         {
-            var tank = Object.Instantiate(_mergedTankConfig.MergedTanksData[0].TankView);
+            if (_gridModel.TryGetFreeCell(out CellData freeCell) == false)
+            {
+                return;
+            }
 
-            var freeCells = _gridModel.GetFreeCells();
+            var tank = Object.Instantiate(_mergedTankConfig.MergedTanksData[0].TankView, freeCell.CellView.transform);
             
-            var randomCell = freeCells[Random.Range(0, freeCells.Count)];
+            tank.transform.localPosition = Vector3.zero;
+            
+            freeCell.IsBusy = true;
         }
     }
 }

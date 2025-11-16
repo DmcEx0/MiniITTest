@@ -7,12 +7,12 @@ namespace MiniIT.Models
     {
         private readonly List<MergedTankView> _mergedTanks;
 
-        public TanksModel(List<MergedTankView> mergedTanks)
+        public TanksModel()
         {
-            _mergedTanks = mergedTanks;
+            _mergedTanks = new List<MergedTankView>();
         }
 
-        public IReadOnlyList<MergedTankView> MergedTanks  => _mergedTanks;
+        public IReadOnlyList<MergedTankView> MergedTanks => _mergedTanks;
 
         public void AddTank(MergedTankView tank)
         {
