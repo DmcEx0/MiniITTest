@@ -1,6 +1,4 @@
 using System;
-using MiniIT.Data;
-using MiniIT.Models;
 using MiniIT.Views;
 using UnityEngine;
 using UnityEngine.InputSystem;

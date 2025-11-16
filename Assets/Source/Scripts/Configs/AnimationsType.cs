@@ -1,4 +1,4 @@
-namespace MiniIT
+namespace MiniIT.Configs
 {
     public enum AnimationsType
     {

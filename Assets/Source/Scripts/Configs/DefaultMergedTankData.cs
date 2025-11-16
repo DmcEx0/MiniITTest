@@ -1,5 +1,4 @@
 using System;
-using MiniIT.Views;
 using UnityEngine;
 
 namespace MiniIT.Configs
