@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd44eaa5c671c894ab26d9edaf8066ce, type: 3}
   m_Name: GameConfig
   m_EditorClassIdentifier: Assembly-CSharp::MiniIT.Configs.GameConfig
-  <GameFieldSize>k__BackingField: {x: 0, y: 0}
-  <GameCellScale>k__BackingField: 0
+  <GridSize>k__BackingField: {x: 4, y: 7}
+  <CellPrefab>k__BackingField: {fileID: 3770876375502029150, guid: c1688b2697d57dd41a7e09f98e6342f7, type: 3}
+  <CellSize>k__BackingField: 0.5
+  <CellSpacing>k__BackingField: 0.2

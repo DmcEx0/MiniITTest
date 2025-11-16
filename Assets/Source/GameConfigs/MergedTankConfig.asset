@@ -10,6 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff12f7b5546eaa945898fdc1aa7e26ff, type: 3}
-  m_Name: MergedCarConfig
+  m_Name: MergedTankConfig
   m_EditorClassIdentifier: Assembly-CSharp::MiniIT.Configs.MergedCarConfig
-  _mergedTanksData: []
+  _mergedTanksData:
+  - <CarSprite>k__BackingField: {fileID: 0}
+    <Level>k__BackingField: 0
+    <Damage>k__BackingField: 0

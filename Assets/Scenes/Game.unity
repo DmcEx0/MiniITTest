@@ -244,6 +244,8 @@ MonoBehaviour:
     TypeName: 
   autoRun: 1
   autoInjectGameObjects: []
+  _gameConfig: {fileID: 11400000, guid: 0c6e1d71a535dfe4cbfe4a16b13284ba, type: 2}
+  _mergedTankConfig: {fileID: 11400000, guid: bc0804afb33ee0b419f8e11acc5b5498, type: 2}
 --- !u!4 &809523124
 Transform:
   m_ObjectHideFlags: 0
@@ -296,8 +298,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -319,7 +319,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
