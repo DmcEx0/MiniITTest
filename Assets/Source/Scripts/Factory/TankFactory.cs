@@ -50,5 +50,12 @@ namespace MiniIT.Factory
             
             return true;
         }
+
+        public int GetMaxTankLevel()
+        {
+            var maxLevel = _mergedTankConfig.MergedTanksData.Max(data => data.Level);
+            
+            return maxLevel;
+        }
     }
 }

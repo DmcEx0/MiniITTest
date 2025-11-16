@@ -63,11 +63,19 @@ namespace MiniIT.Controllers
 #endif
 
             var firstTankData = firstData.TankData;
-            var secondaryTankData = secondData.TankData;
+            var secondTankData = secondData.TankData;
 
-            if (firstTankData.Level == secondaryTankData.Level)
+            if (firstTankData.Level >= _mergeModel.MaxTankLevel || secondTankData.Level >= _mergeModel.MaxTankLevel)
             {
-                MergeAsync(dragTank, secondaryTank, firstData, secondData).Forget();
+                return false;
+            }
+
+            if (firstTankData.Level == secondTankData.Level)
+            {
+                dragTank.Merging -= TryMerge;
+                secondaryTank.Merging -= TryMerge;
+                    
+                MergeAsync(firstData, secondData).Forget();
 
                 return true;
             }
@@ -75,22 +83,21 @@ namespace MiniIT.Controllers
             return false;
         }
 
-        private async UniTask MergeAsync(IMergeable dragTank, IMergeable secondaryTank, CellData firstData,
-            CellData secondData)
+        private async UniTask MergeAsync(CellData firstData, CellData secondData)
         {
-            dragTank.Merging -= TryMerge;
-            secondaryTank.Merging -= TryMerge;
-
-            firstData.TankData.TankMerged.Transform.position = secondData.TankData.TankMerged.Transform.position;
+            var firstTankData = firstData.TankData;
+            var secondTankData = secondData.TankData;
+            
+            firstTankData.TankMerged.Transform.position = secondTankData.TankMerged.Transform.position;
 
             var center =
-                (firstData.TankData.TankMerged.Transform.position.x + secondData.TankData.TankMerged.Transform.position.x) * 0.5f;
+                (firstTankData.TankMerged.Transform.position.x + secondTankData.TankMerged.Transform.position.x) * 0.5f;
 
-            firstData.TankData.TankMerged.Collider.enabled = false;
-            secondData.TankData.TankMerged.Collider.enabled = false;
+            firstTankData.TankMerged.Collider.enabled = false;
+            secondTankData.TankMerged.Collider.enabled = false;
 
             var leftTask = _animationProvider.CallInBounceEffectAsync(
-                firstData.TankData.TankMerged.Transform,
+                firstTankData.TankMerged.Transform,
                 AnimationsType.Merge,
                 DirectionType.Left,
                 center,
@@ -98,7 +105,7 @@ namespace MiniIT.Controllers
             );
 
             var rightTask = _animationProvider.CallInBounceEffectAsync(
-                secondData.TankData.TankMerged.Transform,
+                secondTankData.TankMerged.Transform,
                 AnimationsType.Merge,
                 DirectionType.Right,
                 center,
@@ -107,10 +114,10 @@ namespace MiniIT.Controllers
 
             await UniTask.WhenAll(leftTask, rightTask);
             
-            var a = (firstData.TankData.TankMerged.Transform.position + secondData.TankData.TankMerged.Transform.position) * 0.5f;
+            var a = (firstTankData.TankMerged.Transform.position + secondTankData.TankMerged.Transform.position) * 0.5f;
             Object.Instantiate(_particleSystem, a, Quaternion.identity);
 
-            _mergeModel.OnMergedSuccess(firstData.TankData.Level, secondData);
+            _mergeModel.OnMergedSuccess(firstTankData.Level, secondData);
 
 #if ENABLE_DEBUG
             Debug.Log("[MergeController] Move To: " + secondData.Name);

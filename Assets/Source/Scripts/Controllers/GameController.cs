@@ -32,8 +32,10 @@ namespace MiniIT.Controllers
         public void Initialize()
         {
             _tankFactory.Prepare();
-            
+
             _mergeModel.MergedSuccess += SpawnTank;
+            _mergeModel.MaxTankLevel = _tankFactory.GetMaxTankLevel();
+
             _canSpawnTank = true;
         }
 

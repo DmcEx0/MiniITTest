@@ -8,9 +8,9 @@ namespace MiniIT.Data
         public bool IsBusy { get; private set; }
         public CellView CellView { get; private set; }
         public MergedTankData TankData { get; private set; }
-        
+
 #if ENABLE_DEBUG
-        public string Name {get; set;}
+        public string Name { get; set; }
 #endif
         public CellData(CellView cellView)
         {
@@ -24,9 +24,10 @@ namespace MiniIT.Data
                 IsBusy = false;
                 return;
             }
-            
+
             TankData.Disable();
             TankData = null;
+            IsBusy = false;
         }
 
         public void ChangeTank(MergedTankData tankData)

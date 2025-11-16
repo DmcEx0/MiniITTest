@@ -8,6 +8,8 @@ namespace MiniIT.Models
     {
         private readonly AsyncReactiveProperty<MergedTankData> _mergedTankData;
 
+        public int MaxTankLevel { get; set; } = 0;
+
         public Action<int, CellData> MergedSuccess;
 
         public IReadOnlyAsyncReactiveProperty<MergedTankData> MergedTankData => _mergedTankData;
