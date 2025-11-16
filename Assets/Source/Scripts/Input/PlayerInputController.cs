@@ -88,7 +88,7 @@ namespace MiniIT.Input
 
             RaycastHit2D hit = Physics2D.Raycast(worldPosition, Vector2.zero);
 
-            if (hit.collider.TryGetComponent(out IDrageable drageable))
+            if (hit.collider != null && hit.collider.TryGetComponent(out IDrageable drageable))
             {
                 _findedDrageable = drageable;
             }
