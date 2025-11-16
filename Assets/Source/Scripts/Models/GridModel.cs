@@ -9,15 +9,15 @@ namespace MiniIT.Models
 {
     public class GridModel
     {
-        private readonly GameConfig _gameConfig;
+        private readonly GridConfig _gridConfig;
 
         private readonly List<CellData> _cellsData = null;
 
         public IReadOnlyList<CellData> CellsData => _cellsData;
 
-        public GridModel(GameConfig gameConfig)
+        public GridModel(GridConfig gridConfig)
         {
-            _gameConfig = gameConfig;
+            _gridConfig = gridConfig;
 
             _cellsData = new List<CellData>();
         }
@@ -41,10 +41,10 @@ namespace MiniIT.Models
 
         public void BuildGrid()
         {
-            float width = _gameConfig.GridSize.x;
-            float height = _gameConfig.GridSize.y;
-            float cellSize = _gameConfig.CellSize;
-            float spacing = _gameConfig.CellSpacing;
+            float width = _gridConfig.GridSize.x;
+            float height = _gridConfig.GridSize.y;
+            float cellSize = _gridConfig.CellSize;
+            float spacing = _gridConfig.CellSpacing;
 
             float totalWidth = width * cellSize + (width - 1) * spacing;
             float totalHeight = height * cellSize + (height - 1) * spacing;
@@ -60,10 +60,10 @@ namespace MiniIT.Models
 
                     Vector2 worldPos = offset + localPos;
 
-                    var cellInstance = Object.Instantiate(_gameConfig.CellPrefab, worldPos, Quaternion.identity);
+                    var cellInstance = Object.Instantiate(_gridConfig.CellPrefab, worldPos, Quaternion.identity);
 
                     cellInstance.transform.localScale =
-                        new Vector3(_gameConfig.CellSize, _gameConfig.CellSize, _gameConfig.CellSize);
+                        new Vector3(_gridConfig.CellSize, _gridConfig.CellSize, _gridConfig.CellSize);
 
                     var newCellData = new CellData(cellInstance, false);
                     
