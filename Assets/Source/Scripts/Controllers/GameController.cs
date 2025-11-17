@@ -1,9 +1,11 @@
 using System;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using MiniIT.Configs;
 using MiniIT.Data;
 using MiniIT.Factory;
 using MiniIT.Models;
+using MiniIT.Providers;
 using VContainer.Unity;
 
 namespace MiniIT.Controllers
@@ -14,6 +16,7 @@ namespace MiniIT.Controllers
 
         private readonly GameConfig _gameConfig = null;
         private readonly TankFactory _tankFactory = null;
+        private readonly AsyncAnimationProvider _animationProvider = null;
 
         private readonly MergeModel _mergeModel = null;
         private readonly GridModel _gridModel = null;
@@ -21,12 +24,13 @@ namespace MiniIT.Controllers
         private bool _canSpawnTank = false;
 
         public GameController(GameConfig gameConfig, GridModel gridModel, TankFactory tankFactory,
-            MergeModel mergeModel)
+            MergeModel mergeModel, AsyncAnimationProvider animationProvider)
         {
             _gameConfig = gameConfig;
             _gridModel = gridModel;
             _tankFactory = tankFactory;
             _mergeModel = mergeModel;
+            _animationProvider = animationProvider;
         }
 
         public void Initialize()
@@ -85,6 +89,8 @@ namespace MiniIT.Controllers
             }
 
             cellData.ChangeTank(newTankData);
+
+            _animationProvider.CallBounceScaleEffectAsync(cellData.TankData.Transform, BehaviourType.None, CancellationToken.None).Forget();
 
             _mergeModel.RegisterNewData(newTankData);
         }

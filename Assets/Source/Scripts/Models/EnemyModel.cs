@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using MiniIT.Data;
 using MiniIT.Views;
+using UnityEngine;
 
 namespace MiniIT.Models
 {
@@ -40,12 +41,12 @@ namespace MiniIT.Models
 
             foreach (var data in _bulletModel.BulletData)
             {
-                if (ReferenceEquals(data.Movable.Rigidbody, bulletView.Rigidbody))
+                if (ReferenceEquals(data.Transform, bulletView.transform))
                 {
                     bulletData = data;
 
                     EnemyData enemyData = _enemiesData.FirstOrDefault(enmData =>
-                        ReferenceEquals(enmData.Movable.Rigidbody, enemyView.Rigidbody));
+                        ReferenceEquals(enmData.Transform, enemyView.transform));
 
                     if (enemyData == null)
                     {

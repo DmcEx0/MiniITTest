@@ -106,7 +106,7 @@ namespace MiniIT.Controllers
 
                 EnemyData data = _factory.Get(_spawnPoints[_currentIndex].position);
 
-                _animationProvider.CallMoveEffectAsync(data.Movable.Rigidbody.transform, BehaviourType.Move,
+                _animationProvider.CallBounceScaleYEffectAsync(data.Movable.Rigidbody.transform, BehaviourType.Move,
                     _tokenSource.Token).Forget();
 
                 _enemyModel.AddData(data);

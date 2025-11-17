@@ -1,19 +1,23 @@
 using MiniIT.Behaviours;
 using MiniIT.Factory;
+using MiniIT.Views;
+using UnityEngine;
 
 namespace MiniIT.Data
 {
     public class EnemyData
     {
+        private readonly EnemyView _view;
         public Health Health { get; private set; } = null;
         public IMovable Movable { get; private set; } = null;
-        public IDamageable Damageable { get; private set; } = null;
+        public IDamageable Damageable => _view;
+        public Transform Transform => _view.transform;
 
-        public EnemyData(Health health, IDamageable damageable, IMovable movable)
+        public EnemyData(Health health, EnemyView view, IMovable movable)
         {
             Health = health;
             Movable = movable;
-            Damageable = damageable;
+            _view = view;
         }
 
         public void Init(PoolableObject poolableObject)

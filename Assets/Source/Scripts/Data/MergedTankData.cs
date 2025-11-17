@@ -1,4 +1,5 @@
 using MiniIT.Views;
+using UnityEngine;
 
 namespace MiniIT.Data
 {
@@ -14,6 +15,7 @@ namespace MiniIT.Data
         public float AccumulatedTime {get; set;}
         
         public IMergeable TankMerged => _view;
+        public Transform Transform => _view.transform;
         
         public MergedTankData(MergedTankView view, int level, float damage, float delayBetweenShoot)
         {

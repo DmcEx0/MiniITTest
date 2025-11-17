@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MergedTankConfig
   m_EditorClassIdentifier: Assembly-CSharp::MiniIT.Configs.MergedCarConfig
   <BulletPrefab>k__BackingField: {fileID: 7452901935921279168, guid: 88e4e8f7ebe519a479fabc796cc561d0, type: 3}
-  <BulletSpeed>k__BackingField: 3
+  <BulletSpeed>k__BackingField: 5
   <MainTankPrefab>k__BackingField: {fileID: 8700074702861421700, guid: ef1bcc0c9a763e04985f4ca97cf8872d, type: 3}
   _mergedTanksData:
   - <Sprite>k__BackingField: {fileID: 21300000, guid: c01dc5bb4b3b6e441ab41c1315c239ad, type: 3}
@@ -26,11 +26,11 @@ MonoBehaviour:
     <DelayBetweenShoot>k__BackingField: 1.71
   - <Sprite>k__BackingField: {fileID: 21300000, guid: bde9be7f0563bb14c83f2cfd757ac0b7, type: 3}
     <Level>k__BackingField: 2
-    <Damage>k__BackingField: 10
+    <Damage>k__BackingField: 9
     <DelayBetweenShoot>k__BackingField: 1.3
   - <Sprite>k__BackingField: {fileID: 21300000, guid: b357c26552630814d8ed905c49af4fe8, type: 3}
     <Level>k__BackingField: 3
-    <Damage>k__BackingField: 15
+    <Damage>k__BackingField: 12
     <DelayBetweenShoot>k__BackingField: 1
   - <Sprite>k__BackingField: {fileID: 21300000, guid: 05f1e61af068d104fba54bc4989ebbd5, type: 3}
     <Level>k__BackingField: 4

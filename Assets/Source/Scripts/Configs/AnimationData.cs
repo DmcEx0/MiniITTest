@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace MiniIT.Configs
@@ -7,10 +8,11 @@ namespace MiniIT.Configs
     public class AnimationData
     {
         [field: SerializeField] public BehaviourType Type;
+        [field: SerializeField] public float Duration { get; private set; }
 
         [field: Space]
-        [field: SerializeField] public AnimationCurve CurveStep1  { get; private set; }
-        [field: SerializeField] public AnimationCurve CurveStep2  { get; private set; }
-        [field: SerializeField] public float Duration { get; private set; }
+        [SerializeField] private List<AnimationCurve> _curves;
+        
+        public IReadOnlyList<AnimationCurve> Curves => _curves;
     }
 }

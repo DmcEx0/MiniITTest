@@ -109,7 +109,7 @@ namespace MiniIT.Controllers
             firstTankData.TankMerged.Collider.enabled = false;
             secondTankData.TankMerged.Collider.enabled = false;
 
-            UniTask leftTask = _animationProvider.CallMergeEffectAsync(
+            UniTask leftTask = _animationProvider.CallBounceMoveXEffectAsync(
                 firstTankData.TankMerged.Transform,
                 BehaviourType.Merge,
                 DirectionType.Left,
@@ -117,7 +117,7 @@ namespace MiniIT.Controllers
                 _tokenSource.Token
             );
 
-            UniTask rightTask = _animationProvider.CallMergeEffectAsync(
+            UniTask rightTask = _animationProvider.CallBounceMoveXEffectAsync(
                 secondTankData.TankMerged.Transform,
                 BehaviourType.Merge,
                 DirectionType.Right,

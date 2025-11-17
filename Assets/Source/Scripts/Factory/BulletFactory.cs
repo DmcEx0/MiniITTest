@@ -29,7 +29,7 @@ namespace MiniIT.Factory
 
             MovableData movableData = new MovableData(view.Rigidbody, Vector2.up, _config.BulletSpeed);
 
-            BulletData data = new BulletData(movableData);
+            BulletData data = new BulletData(movableData, view);
             data.Init(damage);
             
             return data;
