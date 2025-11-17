@@ -5,8 +5,9 @@ namespace MiniIT.Models
 {
     public class EnemyModel
     {
-        private List<EnemyData> _enemiesData = null;
+        public List<EnemyData> _enemiesData = null;
 
+        
         public EnemyModel()
         {
             _enemiesData = new List<EnemyData>();
@@ -15,6 +16,25 @@ namespace MiniIT.Models
         public void AddEnemy(EnemyData enemyData)
         {
             _enemiesData.Add(enemyData);
+        }
+        
+        public bool TryGetAvailableData(out EnemyData enemyData)
+        {
+            foreach (var data in _enemiesData)
+            {
+                if (data.Movable.Rigidbody.gameObject.activeSelf)
+                {
+                    continue;
+                }
+                
+                enemyData = data;
+                
+                return true;
+            }
+
+            enemyData = null;
+            
+            return false;
         }
     }
 }

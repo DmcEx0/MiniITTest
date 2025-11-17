@@ -14,6 +14,12 @@ namespace MiniIT.Behaviours
         public Health(float maxHealth)
         {
             _maxHealth = maxHealth;
+
+            Reset();
+        }
+
+        public void Reset()
+        {
             _currentHealth = _maxHealth;
         }
 

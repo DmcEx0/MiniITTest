@@ -52,7 +52,7 @@ namespace MiniIT.Factory
         public EnemyView GetOnlyView()
         {
             EnemyView view = _pool.Get();
-
+            
             return view;
         }
     }

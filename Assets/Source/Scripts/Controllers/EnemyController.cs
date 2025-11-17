@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using MiniIT.Behaviours;
-using MiniIT.Configs;
 using MiniIT.Data;
 using MiniIT.Factory;
 using MiniIT.Models;
@@ -16,7 +15,6 @@ namespace MiniIT.Controllers
     {
         private const float DelayBetweenSpawn = 0.5f;
 
-        private readonly GameConfig _gameConfig = null;
         private readonly EnemyModel _enemyModel = null;
         private readonly EnemyFactory _factory = null;
         private readonly MovementSystem _movementSystem = null;
@@ -29,11 +27,9 @@ namespace MiniIT.Controllers
 
         private bool _canSpawnEnemies = true;
 
-        public EnemyController(EnemyFactory factory, GameConfig gameConfig, EnemyModel enemyModel,
-            Transform spawnPointsContainer)
+        public EnemyController(EnemyFactory factory, EnemyModel enemyModel, Transform spawnPointsContainer)
         {
             _factory = factory;
-            _gameConfig = gameConfig;
             _enemyModel = enemyModel;
             _movementSystem = new MovementSystem();
 
@@ -67,8 +63,10 @@ namespace MiniIT.Controllers
 
         private async UniTask SpawnEnemiesAsync()
         {
-            for (int i = 0; i < _gameConfig.MaxEnemyCount; i++)
+            while (_canSpawnEnemies)
             {
+                await UniTask.Delay(TimeSpan.FromSeconds(DelayBetweenSpawn));
+                
                 int randomIndex = Random.Range(0, _spawnPoints.Count);
                 _currentIndex = randomIndex;
 
@@ -76,28 +74,23 @@ namespace MiniIT.Controllers
                 {
                     _currentIndex = Random.Range(0, _spawnPoints.Count);
                 }
-                
+
                 _previousIndex = _currentIndex;
+
+                if (_enemyModel.TryGetAvailableData(out EnemyData enemyData))
+                {
+                    _factory.GetOnlyView();
+
+                    enemyData.Init();
+
+                    continue;
+                }
 
                 EnemyData data = _factory.Get(_spawnPoints[_currentIndex].position);
 
                 _enemyModel.AddEnemy(data);
                 _movementSystem.AddMovable(data.Movable);
-
-                await UniTask.Delay(TimeSpan.FromSeconds(DelayBetweenSpawn));
             }
-
-            while (_canSpawnEnemies)
-            {
-                await EnableSpawnedEnemiesAsync();
-            }
-        }
-
-        private async UniTask EnableSpawnedEnemiesAsync()
-        {
-            _ = _factory.GetOnlyView();
-
-            await UniTask.Delay(TimeSpan.FromSeconds(DelayBetweenSpawn));
         }
 
         private void ConfigureSpawnPoints()
