@@ -9,20 +9,25 @@ namespace MiniIT.Factory
         private readonly int _poolSize;
         private readonly Transform _parent;
 
-        private readonly List<T> _pool;
+        private List<T> _pool;
 
         public ObjectPool(T prefab, int poolSize, Transform parent)
         {
             _prefab = prefab;
             _poolSize = poolSize;
             _parent = parent;
-            _pool = InitializePool();
         }
-
-        public ObjectPool(Transform parent)
+        
+        public void Initialize()
         {
-            _parent = parent;
             _pool = new List<T>();
+
+            for (int i = 0; i < _poolSize; i++)
+            {
+                T instance = Object.Instantiate(_prefab, _parent);
+                _pool.Add(instance);
+                instance.gameObject.SetActive(false);
+            }
         }
 
         public T Get()
@@ -58,20 +63,6 @@ namespace MiniIT.Factory
             _pool.Add(newInstance);
             
             return newInstance;
-        }
-
-        private List<T> InitializePool()
-        {
-            var pool = new List<T>();
-
-            for (int i = 0; i < _poolSize; i++)
-            {
-                T instance = Object.Instantiate(_prefab, _parent);
-                pool.Add(instance);
-                instance.gameObject.SetActive(false);
-            }
-
-            return pool;
         }
     }
 }

@@ -5,6 +5,7 @@ using Cysharp.Threading.Tasks.Linq;
 using MiniIT.Configs;
 using MiniIT.Data;
 using MiniIT.Models;
+using MiniIT.Providers;
 using MiniIT.Tools;
 using MiniIT.Views;
 using UnityEngine;
@@ -17,21 +18,21 @@ namespace MiniIT.Controllers
         private readonly AsyncAnimationProvider _animationProvider = null;
         private readonly GridModel _gridModel = null;
         private readonly MergeModel _mergeModel = null;
-
-        private ParticleSystem _particleSystem = null;
+        private readonly ParticleProvider _particleProvider = null;
 
         public MergeController(GridModel gridModel, MergeModel mergeModel, AsyncAnimationProvider animationProvider,
-            ParticleSystem particleSystem)
+            ParticleProvider articleProvider)
         {
             _gridModel = gridModel;
             _mergeModel = mergeModel;
             _animationProvider = animationProvider;
-            _particleSystem = particleSystem;
+            _particleProvider = articleProvider;
         }
 
         public void Initialize()
         {
             _mergeModel.MergedTankData.Subscribe(OnRegisterNewData);
+            _particleProvider.Initialize();
         }
 
         private void OnRegisterNewData(MergedTankData mergedTankData)
@@ -91,32 +92,31 @@ namespace MiniIT.Controllers
             
             firstTankData.TankMerged.Transform.position = secondTankData.TankMerged.Transform.position;
 
-            float center =
-                (firstTankData.TankMerged.Transform.position.x + secondTankData.TankMerged.Transform.position.x) * 0.5f;
+            Vector3 center =
+                (firstTankData.TankMerged.Transform.position + secondTankData.TankMerged.Transform.position) * 0.5f;
 
             firstTankData.TankMerged.Collider.enabled = false;
             secondTankData.TankMerged.Collider.enabled = false;
 
             UniTask leftTask = _animationProvider.CallInBounceEffectAsync(
                 firstTankData.TankMerged.Transform,
-                AnimationsType.Merge,
+                BehaviourType.Merge,
                 DirectionType.Left,
-                center,
+                center.x,
                 CancellationToken.None
             );
 
             UniTask rightTask = _animationProvider.CallInBounceEffectAsync(
                 secondTankData.TankMerged.Transform,
-                AnimationsType.Merge,
+                BehaviourType.Merge,
                 DirectionType.Right,
-                center,
+                center.x,
                 CancellationToken.None
             );
 
             await UniTask.WhenAll(leftTask, rightTask);
             
-            Vector3 a = (firstTankData.TankMerged.Transform.position + secondTankData.TankMerged.Transform.position) * 0.5f;
-            Object.Instantiate(_particleSystem, a, Quaternion.identity);
+            _particleProvider.PlayWaitDisableAsync(center).Forget();
 
             _mergeModel.OnMergedSuccess(firstTankData.Level, secondData);
 

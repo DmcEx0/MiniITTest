@@ -1,10 +1,10 @@
 namespace MiniIT.Configs
 {
-    public enum AnimationsType
+    public enum BehaviourType
     {
         None = 0,
         /// <summary>
-        /// Merge tank animations
+        /// Merge tank behaviour
         /// </summary>
         Merge = 1
     }

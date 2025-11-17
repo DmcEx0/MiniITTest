@@ -2,9 +2,10 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using MiniIT.Configs;
+using MiniIT.Tools;
 using UnityEngine;
 
-namespace MiniIT.Tools
+namespace MiniIT.Providers
 {
     public class AsyncAnimationProvider
     {
@@ -17,7 +18,7 @@ namespace MiniIT.Tools
             _animationsConfig = animationsConfig;
         }
         
-        public async UniTask CallInBounceEffectAsync(Transform target, AnimationsType type,
+        public async UniTask CallInBounceEffectAsync(Transform target, BehaviourType type,
             DirectionType directionType, float centerX , CancellationToken token)
         {
             AnimationData data = _animationsConfig.GetAnimationData(type);

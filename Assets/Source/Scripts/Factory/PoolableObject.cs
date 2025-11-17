@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace MiniIT.Factory
 {
-    public abstract class PoolableObject : MonoBehaviour
+    public class PoolableObject : MonoBehaviour
     {
         public Action<PoolableObject> Disabled { get; set; }
 

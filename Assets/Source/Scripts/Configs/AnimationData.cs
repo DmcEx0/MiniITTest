@@ -6,7 +6,7 @@ namespace MiniIT.Configs
     [Serializable]
     public class AnimationData
     {
-        [field: SerializeField] public AnimationsType Type;
+        [field: SerializeField] public BehaviourType Type;
 
         [field: Space]
         [field: SerializeField] public AnimationCurve CurveStep1  { get; private set; }
