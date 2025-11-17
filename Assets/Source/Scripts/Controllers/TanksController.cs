@@ -12,11 +12,13 @@ namespace MiniIT.Controllers
         private readonly GridModel _gridModel = null;
         private readonly BulletFactory _bulletFactory = null;
         private readonly MovementSystem _movementSystem = null;
+        private readonly BulletModel _bulletModel = null;
 
-        public TanksController(GridModel gridModel, BulletFactory bulletFactory)
+        public TanksController(GridModel gridModel, BulletFactory bulletFactory, BulletModel bulletModel)
         {
             _gridModel = gridModel;
             _bulletFactory = bulletFactory;
+            _bulletModel = bulletModel;
             _movementSystem = new MovementSystem();
         }
 
@@ -28,11 +30,11 @@ namespace MiniIT.Controllers
         public void Start()
         {
         }
-        
+
         public void Tick()
         {
             _movementSystem.UpdateMovements();
-            
+
             foreach (var cellData in _gridModel.CellsData)
             {
                 MergedTankData tankData = cellData.TankData;
@@ -41,12 +43,22 @@ namespace MiniIT.Controllers
                 {
                     continue;
                 }
-                
+
                 tankData.AccumulatedTime += Time.deltaTime;
 
                 if (tankData.CheckCanFire())
                 {
+                    if (_bulletModel.TryGetAvailableData(out BulletData bulletData))
+                    {
+                        _bulletFactory.GetOnlyView(tankData.TankMerged.Transform.position);
+                        
+                        bulletData.Init(tankData.Damage);
+                        return;
+                    }
+                    
                     BulletData data = _bulletFactory.Get(tankData.TankMerged.Transform.position, tankData.Damage);
+
+                    _bulletModel.AddData(data);
                     
                     _movementSystem.AddMovable(data.Movable);
                 }

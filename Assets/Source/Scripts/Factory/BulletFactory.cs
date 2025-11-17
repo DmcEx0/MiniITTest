@@ -24,14 +24,24 @@ namespace MiniIT.Factory
         public BulletData Get(Vector2 position, float damage)
         {
             BulletView view = _pool.Get();
-            
+
             view.transform.position = position;
-            
+
             MovableData movableData = new MovableData(view.Rigidbody, Vector2.up, _config.BulletSpeed);
 
-            BulletData data = new BulletData(damage, movableData);
-
+            BulletData data = new BulletData(movableData);
+            data.Init(damage);
+            
             return data;
+        }
+
+        public BulletView GetOnlyView(Vector2 position)
+        {
+            BulletView view = _pool.Get();
+
+            view.transform.position = position;
+            
+            return view;
         }
     }
 }

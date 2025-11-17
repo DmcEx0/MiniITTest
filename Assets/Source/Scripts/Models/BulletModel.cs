@@ -5,11 +5,37 @@ namespace MiniIT.Models
 {
     public class BulletModel
     {
-        private List<BulletData> _bullestData = null;
+        private readonly List<BulletData> _bullestData = null;
 
+        public IReadOnlyList<BulletData> BulletData => _bullestData;
+        
         public BulletModel()
         {
             _bullestData = new List<BulletData>();
+        }
+        
+        public void AddData(BulletData bulletData)
+        {
+            _bullestData.Add(bulletData);
+        }
+        
+        public bool TryGetAvailableData(out BulletData bulletData)
+        {
+            foreach (var data in _bullestData)
+            {
+                if (data.Movable.Rigidbody.gameObject.activeSelf)
+                {
+                    continue;
+                }
+                
+                bulletData = data;
+                
+                return true;
+            }
+
+            bulletData = null;
+            
+            return false;
         }
     }
 }

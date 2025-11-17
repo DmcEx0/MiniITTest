@@ -7,10 +7,14 @@ namespace MiniIT.Data
         public float Damage { get; private set; }
         public IMovable Movable { get; private set; }
         
-        public BulletData(float damage, IMovable movable)
+        public BulletData(IMovable movable)
+        {
+            Movable = movable;
+        }
+
+        public void Init(float damage)
         {
             Damage = damage;
-            Movable = movable;
         }
     }
 }
