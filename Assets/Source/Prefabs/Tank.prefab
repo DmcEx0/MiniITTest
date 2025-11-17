@@ -102,6 +102,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b690da5eddd409b4ea3fb9b9ca4ce30e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 64
   _renderer: {fileID: 733275004150316166}
   <Collider>k__BackingField: {fileID: 416817264042139748}
 --- !u!61 &416817264042139748

@@ -6,6 +6,7 @@ namespace MiniIT.Views
 {
     public class MergedTankView : PoolableObject, IDrageable, IMergeable
     {
+        [SerializeField] private LayerMask _layerMask;
         [SerializeField] private SpriteRenderer _renderer;
         [field: SerializeField] public Collider2D Collider { get; private set; }
         
@@ -51,7 +52,7 @@ namespace MiniIT.Views
         {
             Vector3 pointerPosition = Collider.bounds.center;
 
-            RaycastHit2D hit = Physics2D.Raycast(pointerPosition, Vector2.zero);
+            RaycastHit2D hit = Physics2D.Raycast(pointerPosition, Vector2.zero, _layerMask);
 
             if (hit.collider != null && hit.collider.TryGetComponent(out IMergeable mergeable))
             {
