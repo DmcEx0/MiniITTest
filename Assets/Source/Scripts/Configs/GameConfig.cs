@@ -7,5 +7,6 @@ namespace MiniIT.Configs
     {
         [field: SerializeField] public float MillisecondsToSpawnNextTank { get; private set; }
         [field: SerializeField] public int InitialTankCount { get; private set; }
+        [field: SerializeField] public int MaxEnemyCount { get; private set; }
     }
 }

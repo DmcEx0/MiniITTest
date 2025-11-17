@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MiniIT.Configs.GameConfig
   <MillisecondsToSpawnNextTank>k__BackingField: 3000
   <InitialTankCount>k__BackingField: 3
+  <MaxEnemyCount>k__BackingField: 20
