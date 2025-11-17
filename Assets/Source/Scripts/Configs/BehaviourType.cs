@@ -6,6 +6,10 @@ namespace MiniIT.Configs
         /// <summary>
         /// Merge tank behaviour
         /// </summary>
-        Merge = 1
+        Merge = 1,
+        /// <summary>
+        /// Enemy movement
+        /// </summary>
+        Move = 2,
     }
 }
