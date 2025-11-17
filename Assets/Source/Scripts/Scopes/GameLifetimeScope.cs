@@ -25,6 +25,7 @@ namespace MiniIT.Scopes
         [SerializeField] private Transform _particlePoolContainer = null;
         [SerializeField] private Transform _enemyPoolContainer = null;
         [SerializeField] private Transform _enemySpawnPointsContainer = null;
+        [SerializeField] private Transform _bulletPoolContainer = null;
 
         protected override void Configure(IContainerBuilder builder)
         {
@@ -38,19 +39,20 @@ namespace MiniIT.Scopes
             builder.Register<GridModel>(Lifetime.Singleton);
             builder.Register<MergeModel>(Lifetime.Singleton);
             builder.Register<EnemyModel>(Lifetime.Singleton);
+            builder.Register<BulletModel>(Lifetime.Singleton);
 
             builder.Register<TankFactory>(Lifetime.Singleton).WithParameter(_tankPoolContainer);
             builder.Register<ParticleFactory>(Lifetime.Singleton).WithParameter(_particlePoolContainer);
             builder.Register<EnemyFactory>(Lifetime.Singleton).WithParameter(_enemyPoolContainer);
+            builder.Register<BulletFactory>(Lifetime.Singleton).WithParameter(_bulletPoolContainer);
             
             builder.Register<AsyncAnimationProvider>(Lifetime.Singleton);
             builder.Register<ParticleProvider>(Lifetime.Singleton);
             
-            builder.Register<MovementSystem>(Lifetime.Singleton);
-
             builder.RegisterEntryPoint<GameController>();
             builder.RegisterEntryPoint<MergeController>();
             builder.RegisterEntryPoint<PlayerInputController>();
+            builder.RegisterEntryPoint<TanksController>();
             builder.RegisterEntryPoint<EnemyController>().WithParameter(_enemySpawnPointsContainer);
         }
     }

@@ -1,4 +1,4 @@
-using MiniIT.Views;
+using MiniIT.Factory;
 using UnityEngine;
 
 namespace MiniIT
@@ -7,9 +7,9 @@ namespace MiniIT
     {
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.TryGetComponent(out EnemyView enemyView))
+            if (other.TryGetComponent(out PoolableObject poolable))
             {
-                enemyView.Disable();
+                poolable.Disable();
             }
         }
     }

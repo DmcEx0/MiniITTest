@@ -21,7 +21,7 @@ namespace MiniIT.Behaviours
             }
         }
 
-        public void AddMovement(IMovable movement)
+        public void AddMovable(IMovable movement)
         {
             _movables.Add(movement);
         }

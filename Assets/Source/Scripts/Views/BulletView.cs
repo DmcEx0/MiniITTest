@@ -1,7 +1,7 @@
 using MiniIT.Factory;
 using UnityEngine;
 
-namespace MiniIT
+namespace MiniIT.Views
 {
     public class BulletView : PoolableObject
     {

@@ -30,12 +30,12 @@ namespace MiniIT.Controllers
         private bool _canSpawnEnemies = true;
 
         public EnemyController(EnemyFactory factory, GameConfig gameConfig, EnemyModel enemyModel,
-            Transform spawnPointsContainer, MovementSystem movementSystem)
+            Transform spawnPointsContainer)
         {
             _factory = factory;
             _gameConfig = gameConfig;
             _enemyModel = enemyModel;
-            _movementSystem = movementSystem;
+            _movementSystem = new MovementSystem();
 
             _spawnPointsContainer = spawnPointsContainer;
 
@@ -82,7 +82,7 @@ namespace MiniIT.Controllers
                 EnemyData data = _factory.Get(_spawnPoints[_currentIndex].position);
 
                 _enemyModel.AddEnemy(data);
-                _movementSystem.AddMovement(data.Movable);
+                _movementSystem.AddMovable(data.Movable);
 
                 await UniTask.Delay(TimeSpan.FromSeconds(DelayBetweenSpawn));
             }

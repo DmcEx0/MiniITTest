@@ -4,6 +4,7 @@ using MiniIT.Configs;
 using MiniIT.Data;
 using MiniIT.Factory;
 using MiniIT.Models;
+using UnityEngine;
 using VContainer.Unity;
 
 namespace MiniIT.Controllers
