@@ -11,8 +11,8 @@ namespace MiniIT.Views
         
         private Vector3 _startPosition;
         private Vector3 _offset;
-        
-        public Transform Transform { get; private set; }
+
+        public Transform Transform { get; private set; } = null;
         public Func<IMergeable, IMergeable, bool> Merging { get; set; }
 
         private void Awake()

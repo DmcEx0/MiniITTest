@@ -12,13 +12,13 @@ namespace MiniIT.Controllers
     {
         private const int FirstTankLevel = 0;
 
-        private readonly GameConfig _gameConfig;
-        private readonly TankFactory _tankFactory;
+        private readonly GameConfig _gameConfig = null;
+        private readonly TankFactory _tankFactory = null;
 
-        private readonly MergeModel _mergeModel;
-        private readonly GridModel _gridModel;
+        private readonly MergeModel _mergeModel = null;
+        private readonly GridModel _gridModel = null;
 
-        private bool _canSpawnTank;
+        private bool _canSpawnTank = false;
 
         public GameController(GameConfig gameConfig, GridModel gridModel, TankFactory tankFactory,
             MergeModel mergeModel)

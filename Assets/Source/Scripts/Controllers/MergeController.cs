@@ -14,11 +14,11 @@ namespace MiniIT.Controllers
 {
     public class MergeController : IInitializable
     {
-        private readonly AsyncAnimationProvider _animationProvider;
-        private readonly GridModel _gridModel;
-        private readonly MergeModel _mergeModel;
+        private readonly AsyncAnimationProvider _animationProvider = null;
+        private readonly GridModel _gridModel = null;
+        private readonly MergeModel _mergeModel = null;
 
-        private ParticleSystem _particleSystem;
+        private ParticleSystem _particleSystem = null;
 
         public MergeController(GridModel gridModel, MergeModel mergeModel, AsyncAnimationProvider animationProvider,
             ParticleSystem particleSystem)

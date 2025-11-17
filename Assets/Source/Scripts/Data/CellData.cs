@@ -4,12 +4,12 @@ namespace MiniIT.Data
 {
     public class CellData
     {
-        public bool IsBusy { get; private set; }
-        public CellView CellView { get; private set; }
-        public MergedTankData TankData { get; private set; }
+        public bool IsBusy { get; private set; } = false;
+        public CellView CellView { get; private set; } = null;
+        public MergedTankData TankData { get; private set; } = null;
 
 #if ENABLE_DEBUG
-        public string Name { get; set; }
+        public string Name { get; set; } = "";
 #endif
         public CellData(CellView cellView)
         {

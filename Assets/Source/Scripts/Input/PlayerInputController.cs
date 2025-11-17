@@ -8,9 +8,9 @@ namespace MiniIT.Input
 {
     public class PlayerInputController : IInitializable, ITickable, IDisposable
     {
-        private readonly UserInput _userInput;
+        private readonly UserInput _userInput = null;
 
-        private IDrageable _findedDrageable;
+        private IDrageable _findedDrageable = null;
 
         private bool _isProcess = false;
 

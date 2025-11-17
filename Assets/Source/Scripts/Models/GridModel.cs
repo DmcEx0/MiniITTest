@@ -10,7 +10,7 @@ namespace MiniIT.Models
 {
     public class GridModel
     {
-        private readonly GridConfig _gridConfig;
+        private readonly GridConfig _gridConfig = null;
 
         private readonly List<CellData> _cellsData = null;
 
@@ -36,7 +36,7 @@ namespace MiniIT.Models
                 }
             }
 
-            freeCell = default;
+            freeCell = null;
             return false;
         }
 

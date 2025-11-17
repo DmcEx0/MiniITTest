@@ -8,12 +8,12 @@ namespace MiniIT.Factory
 {
     public class TankFactory : GameObjectFactory
     {
-        private readonly MergedTankConfig _mergedTankConfig;
-        private readonly GridConfig _gridConfig;
+        private readonly MergedTankConfig _mergedTankConfig = null;
+        private readonly GridConfig _gridConfig = null;
         
-        private readonly Transform _container;
+        private readonly Transform _container = null;
         
-        private ObjectPool<MergedTankView> _pool;
+        private ObjectPool<MergedTankView> _pool = null;
 
         public TankFactory(MergedTankConfig mergedTankConfig, GridConfig gridConfig, Transform container)
         {
