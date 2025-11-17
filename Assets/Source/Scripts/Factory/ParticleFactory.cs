@@ -8,7 +8,7 @@ namespace MiniIT.Factory
     {
         private const int StarsPoolSize = 6;
 
-        private readonly ObjectPool<ParticleView> _starsPool;
+        private readonly ObjectPool<ParticleView> _starsPool = null;
 
         public ParticleFactory(ParticleConfig config, Transform particleContainer)
         {

@@ -8,7 +8,7 @@ namespace MiniIT.Providers
 {
     public class ParticleProvider
     {
-        private readonly ParticleFactory _factory;
+        private readonly ParticleFactory _factory = null;
         
         public ParticleProvider(ParticleFactory factory)
         {

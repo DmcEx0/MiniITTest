@@ -10,6 +10,8 @@ namespace MiniIT.Models
 {
     public class GridModel
     {
+        private const float Half = 0.5f;
+        
         private readonly GridConfig _gridConfig = null;
 
         private readonly List<CellData> _cellsData = null;
@@ -50,8 +52,8 @@ namespace MiniIT.Models
             float totalWidth = width * cellSize + (width - 1) * spacing;
             float totalHeight = height * cellSize + (height - 1) * spacing;
 
-            Vector2 offset = new Vector2(-totalWidth * 0.5f, -totalHeight * 0.5f) +
-                             new Vector2(cellSize * 0.5f, cellSize * 0.5f);
+            Vector2 offset = new Vector2(-totalWidth * Half, -totalHeight) +
+                             new Vector2(cellSize * Half, cellSize * Half);
 
             for (int i = 0; i < width; i++)
             {

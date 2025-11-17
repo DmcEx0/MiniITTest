@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd44eaa5c671c894ab26d9edaf8066ce, type: 3}
   m_Name: GameConfig
   m_EditorClassIdentifier: Assembly-CSharp::MiniIT.Configs.GameConfig
-  <MillisecondsToSpawnNextTank>k__BackingField: 1000
+  <MillisecondsToSpawnNextTank>k__BackingField: 3000
   <InitialTankCount>k__BackingField: 3
