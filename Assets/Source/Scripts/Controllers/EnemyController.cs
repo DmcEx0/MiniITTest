@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using MiniIT.Behaviours;
+using MiniIT.Configs;
 using MiniIT.Data;
 using MiniIT.Factory;
 using MiniIT.Models;
@@ -14,10 +15,9 @@ namespace MiniIT.Controllers
 {
     public class EnemyController : IInitializable, IStartable, IFixedTickable, IDisposable
     {
-        private const float DelayBetweenSpawn = 0.5f;
-
         private readonly EnemyModel _enemyModel = null;
         private readonly EnemyFactory _factory = null;
+        private readonly GameConfig _gameConfig = null;
         private readonly MovementSystem _movementSystem = null;
         private readonly Transform _spawnPointsContainer = null;
 
@@ -28,10 +28,12 @@ namespace MiniIT.Controllers
 
         private bool _canSpawnEnemies = true;
 
-        public EnemyController(EnemyFactory factory, EnemyModel enemyModel, Transform spawnPointsContainer)
+        public EnemyController(EnemyFactory factory, EnemyModel enemyModel, Transform spawnPointsContainer, GameConfig gameConfig)
         {
             _factory = factory;
             _enemyModel = enemyModel;
+            _gameConfig = gameConfig;
+            
             _movementSystem = new MovementSystem();
 
             _spawnPointsContainer = spawnPointsContainer;
@@ -66,8 +68,10 @@ namespace MiniIT.Controllers
         {
             while (_canSpawnEnemies)
             {
-                await UniTask.Delay(TimeSpan.FromSeconds(DelayBetweenSpawn));
-                
+                await UniTask.Delay(TimeSpan.FromSeconds(_gameConfig.DelayBetweenSpawnEnemy));
+#if ENABLE_DEBUG
+                Debug.Log("Enemies Data Count: " + _enemyModel.EnemiesData.Count);
+#endif
                 int randomIndex = Random.Range(0, _spawnPoints.Count);
                 _currentIndex = randomIndex;
 

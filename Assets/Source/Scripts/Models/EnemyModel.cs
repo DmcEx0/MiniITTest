@@ -10,6 +10,8 @@ namespace MiniIT.Models
     {
         private readonly BulletModel _bulletModel;
         private readonly List<EnemyData> _enemiesData = null;
+        
+        public IReadOnlyList<EnemyData>  EnemiesData => _enemiesData;
 
         public EnemyModel(BulletModel bulletModel)
         {

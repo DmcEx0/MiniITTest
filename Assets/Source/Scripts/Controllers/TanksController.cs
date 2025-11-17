@@ -46,20 +46,23 @@ namespace MiniIT.Controllers
 
                 tankData.AccumulatedTime += Time.deltaTime;
 
+#if ENABLE_DEBUG
+                Debug.Log("Bullet Data Count: " + _bulletModel.BulletData.Count);
+#endif
                 if (tankData.CheckCanFire())
                 {
                     if (_bulletModel.TryGetAvailableData(out BulletData bulletData))
                     {
                         _bulletFactory.GetOnlyView(tankData.TankMerged.Transform.position);
-                        
+
                         bulletData.Init(tankData.Damage);
                         return;
                     }
-                    
+
                     BulletData data = _bulletFactory.Get(tankData.TankMerged.Transform.position, tankData.Damage);
 
                     _bulletModel.AddData(data);
-                    
+
                     _movementSystem.AddMovable(data.Movable);
                 }
             }

@@ -62,7 +62,7 @@ namespace MiniIT.Controllers
         {
             while (_canSpawnTank)
             {
-                await UniTask.Delay(TimeSpan.FromMilliseconds(_gameConfig.MillisecondsToSpawnNextTank));
+                await UniTask.Delay(TimeSpan.FromSeconds(_gameConfig.DelayBetweenSpawnNextTank));
 
                 SpawnOnCell();
             }

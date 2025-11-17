@@ -16,7 +16,7 @@ namespace MiniIT.Factory
         {
             _enemyConfig = enemyConfig;
 
-            _pool = new ObjectPool<EnemyView>(enemyConfig.Prefab, gameConfig.MaxEnemyCount, container);
+            _pool = new ObjectPool<EnemyView>(enemyConfig.Prefab, gameConfig.EnemyPoolCount, container);
         }
 
         public void Prepare()
