@@ -1,7 +1,7 @@
-using MiniIT.Views;
+using MiniIT.MergeTwo.Views;
 using UnityEngine;
 
-namespace MiniIT.Configs
+namespace MiniIT.MergeTwo.Configs
 {
     [CreateAssetMenu(fileName = "EnemyConfig", menuName = "Configs/EnemyConfig")]
     public class EnemyConfig : ScriptableObject

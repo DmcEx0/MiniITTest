@@ -1,7 +1,7 @@
 using System;
-using MiniIT.Views;
+using MiniIT.MergeTwo.Views;
 
-namespace MiniIT
+namespace MiniIT.MergeTwo.Behaviours
 {
     public interface IDamageable
     {

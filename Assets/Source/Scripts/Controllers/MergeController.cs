@@ -3,16 +3,16 @@ using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using Cysharp.Threading.Tasks.Linq;
-using MiniIT.Configs;
-using MiniIT.Data;
-using MiniIT.Models;
-using MiniIT.Providers;
-using MiniIT.Tools;
-using MiniIT.Views;
+using MiniIT.MergeTwo.Configs;
+using MiniIT.MergeTwo.Data;
+using MiniIT.MergeTwo.Models;
+using MiniIT.MergeTwo.Providers;
+using MiniIT.MergeTwo.Tools;
+using MiniIT.MergeTwo.Views;
 using UnityEngine;
 using VContainer.Unity;
 
-namespace MiniIT.Controllers
+namespace MiniIT.MergeTwo.Controllers
 {
     public class MergeController : IInitializable, IDisposable
     {

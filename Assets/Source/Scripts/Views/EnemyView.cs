@@ -1,8 +1,9 @@
 using System;
-using MiniIT.Factory;
+using MiniIT.MergeTwo.Behaviours;
+using MiniIT.MergeTwo.Factory;
 using UnityEngine;
 
-namespace MiniIT.Views
+namespace MiniIT.MergeTwo.Views
 {
     public class EnemyView : PoolableObject, IDamageable
     {

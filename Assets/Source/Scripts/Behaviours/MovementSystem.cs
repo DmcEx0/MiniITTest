@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MiniIT.Behaviours
+namespace MiniIT.MergeTwo.Behaviours
 {
     public class MovementSystem
     {

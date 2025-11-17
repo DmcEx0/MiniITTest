@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MiniIT.Factory
+namespace MiniIT.MergeTwo.Factory
 {
     public class GameObjectFactory
     {

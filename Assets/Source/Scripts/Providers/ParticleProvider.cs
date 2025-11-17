@@ -1,10 +1,10 @@
 using Cysharp.Threading.Tasks;
-using MiniIT.Configs;
-using MiniIT.Factory;
-using MiniIT.Views;
+using MiniIT.MergeTwo.Configs;
+using MiniIT.MergeTwo.Factory;
+using MiniIT.MergeTwo.Views;
 using UnityEngine;
 
-namespace MiniIT.Providers
+namespace MiniIT.MergeTwo.Providers
 {
     public class ParticleProvider
     {

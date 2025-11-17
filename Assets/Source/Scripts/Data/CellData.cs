@@ -1,6 +1,6 @@
-using MiniIT.Views;
+using MiniIT.MergeTwo.Views;
 
-namespace MiniIT.Data
+namespace MiniIT.MergeTwo.Data
 {
     public class CellData
     {

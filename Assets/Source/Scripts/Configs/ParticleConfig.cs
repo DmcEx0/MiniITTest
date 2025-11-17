@@ -1,7 +1,7 @@
-using MiniIT.Views;
+using MiniIT.MergeTwo.Views;
 using UnityEngine;
 
-namespace MiniIT
+namespace MiniIT.MergeTwo.Configs
 {
     [CreateAssetMenu(menuName = "Configs/ParticleConfig",  fileName = "ParticleConfig")]
     public class ParticleConfig : ScriptableObject

@@ -1,7 +1,7 @@
-using MiniIT.Behaviours;
+using MiniIT.MergeTwo.Behaviours;
 using UnityEngine;
 
-namespace MiniIT.Data
+namespace MiniIT.MergeTwo.Data
 {
     public class MovableData : IMovable
     {

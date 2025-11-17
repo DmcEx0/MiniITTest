@@ -1,4 +1,4 @@
-namespace MiniIT.Configs
+namespace MiniIT.MergeTwo.Configs
 {
     public enum BehaviourType
     {

@@ -1,7 +1,7 @@
-using MiniIT.Factory;
+using MiniIT.MergeTwo.Factory;
 using UnityEngine;
 
-namespace MiniIT.Behaviours
+namespace MiniIT.MergeTwo.Behaviours
 {
     public class Health
     {

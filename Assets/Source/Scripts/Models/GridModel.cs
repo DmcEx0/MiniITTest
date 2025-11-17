@@ -1,12 +1,12 @@
 using System.Collections.Generic;
-using MiniIT.Configs;
-using MiniIT.Data;
-using MiniIT.Views;
+using MiniIT.MergeTwo.Configs;
+using MiniIT.MergeTwo.Data;
+using MiniIT.MergeTwo.Views;
 using UnityEngine;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
-namespace MiniIT.Models
+namespace MiniIT.MergeTwo.Models
 {
     public class GridModel
     {

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MiniIT.Configs
+namespace MiniIT.MergeTwo.Configs
 {
     [Serializable]
     public class AnimationData

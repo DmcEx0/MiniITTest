@@ -1,8 +1,8 @@
 using System;
 using Cysharp.Threading.Tasks;
-using MiniIT.Data;
+using MiniIT.MergeTwo.Data;
 
-namespace MiniIT.Models
+namespace MiniIT.MergeTwo.Models
 {
     public class MergeModel
     {

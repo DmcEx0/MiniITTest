@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace MiniIT.Views
+namespace MiniIT.MergeTwo.Views
 {
     public interface IMergeable
     {

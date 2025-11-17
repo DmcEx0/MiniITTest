@@ -1,7 +1,7 @@
-using MiniIT.Views;
+using MiniIT.MergeTwo.Views;
 using UnityEngine;
 
-namespace MiniIT.Data
+namespace MiniIT.MergeTwo.Data
 {
     public class MergedTankData
     {

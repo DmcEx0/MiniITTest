@@ -1,7 +1,7 @@
-using MiniIT.Factory;
+using MiniIT.MergeTwo.Factory;
 using UnityEngine;
 
-namespace MiniIT
+namespace MiniIT.MergeTwo.Helpers
 {
     public class TriggerWall : MonoBehaviour
     {

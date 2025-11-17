@@ -1,4 +1,4 @@
-namespace MiniIT.Tools
+namespace MiniIT.MergeTwo.Tools
 {
     public enum DirectionType
     {

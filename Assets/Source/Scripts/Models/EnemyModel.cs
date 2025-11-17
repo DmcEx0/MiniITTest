@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MiniIT.Data;
-using MiniIT.Views;
-using UnityEngine;
+using MiniIT.MergeTwo.Data;
+using MiniIT.MergeTwo.Views;
 
-namespace MiniIT.Models
+namespace MiniIT.MergeTwo.Models
 {
     public class EnemyModel : IDisposable
     {

@@ -1,8 +1,8 @@
-using MiniIT.Behaviours;
-using MiniIT.Views;
+using MiniIT.MergeTwo.Behaviours;
+using MiniIT.MergeTwo.Views;
 using UnityEngine;
 
-namespace MiniIT.Data
+namespace MiniIT.MergeTwo.Data
 {
     public class BulletData
     {

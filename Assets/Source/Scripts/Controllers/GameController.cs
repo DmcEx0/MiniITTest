@@ -1,14 +1,14 @@
 using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using MiniIT.Configs;
-using MiniIT.Data;
-using MiniIT.Factory;
-using MiniIT.Models;
-using MiniIT.Providers;
+using MiniIT.MergeTwo.Configs;
+using MiniIT.MergeTwo.Data;
+using MiniIT.MergeTwo.Factory;
+using MiniIT.MergeTwo.Models;
+using MiniIT.MergeTwo.Providers;
 using VContainer.Unity;
 
-namespace MiniIT.Controllers
+namespace MiniIT.MergeTwo.Controllers
 {
     public class GameController : IInitializable, IStartable, IDisposable
     {

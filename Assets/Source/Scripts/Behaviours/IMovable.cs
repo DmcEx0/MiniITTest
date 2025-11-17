@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MiniIT.Behaviours
+namespace MiniIT.MergeTwo.Behaviours
 {
     public interface IMovable
     {

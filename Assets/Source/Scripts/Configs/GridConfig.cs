@@ -1,7 +1,7 @@
-using MiniIT.Views;
+using MiniIT.MergeTwo.Views;
 using UnityEngine;
 
-namespace MiniIT.Configs
+namespace MiniIT.MergeTwo.Configs
 {
     [CreateAssetMenu(fileName = "GridConfig", menuName = "Configs/GridConfig")]
     public class GridConfig : ScriptableObject

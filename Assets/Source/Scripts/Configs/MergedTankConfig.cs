@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using MiniIT.Views;
+using MiniIT.MergeTwo.Views;
 using UnityEngine;
 
-namespace MiniIT.Configs
+namespace MiniIT.MergeTwo.Configs
 {
     [CreateAssetMenu(menuName = "Configs/MergedTankConfig", fileName = "MergedTankConfig")]
     public class MergedTankConfig : ScriptableObject

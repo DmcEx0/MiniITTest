@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MiniIT.Configs
+namespace MiniIT.MergeTwo.Configs
 {
     [CreateAssetMenu(fileName = "GameConfig", menuName = "Configs/GameConfig")]
     public class GameConfig : ScriptableObject

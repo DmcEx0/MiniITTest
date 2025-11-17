@@ -1,10 +1,11 @@
 using System;
-using MiniIT.Views;
+using MiniIT.Input;
+using MiniIT.MergeTwo.Views;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using VContainer.Unity;
 
-namespace MiniIT.Input
+namespace MiniIT.MergeTwo.Input
 {
     public class PlayerInputController : IInitializable, ITickable, IDisposable
     {

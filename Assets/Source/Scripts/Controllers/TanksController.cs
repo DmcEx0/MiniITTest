@@ -1,11 +1,11 @@
-using MiniIT.Behaviours;
-using MiniIT.Data;
-using MiniIT.Factory;
-using MiniIT.Models;
+using MiniIT.MergeTwo.Behaviours;
+using MiniIT.MergeTwo.Data;
+using MiniIT.MergeTwo.Factory;
+using MiniIT.MergeTwo.Models;
 using UnityEngine;
 using VContainer.Unity;
 
-namespace MiniIT.Controllers
+namespace MiniIT.MergeTwo.Controllers
 {
     public class TanksController : IInitializable, IStartable, ITickable
     {

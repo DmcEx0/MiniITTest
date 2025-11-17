@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace MiniIT.Configs
+namespace MiniIT.MergeTwo.Configs
 {
     [Serializable]
     public class DefaultMergedTankData

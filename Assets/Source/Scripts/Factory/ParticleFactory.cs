@@ -1,8 +1,8 @@
-using MiniIT.Configs;
-using MiniIT.Views;
+using MiniIT.MergeTwo.Configs;
+using MiniIT.MergeTwo.Views;
 using UnityEngine;
 
-namespace MiniIT.Factory
+namespace MiniIT.MergeTwo.Factory
 {
     public class ParticleFactory : GameObjectFactory
     {

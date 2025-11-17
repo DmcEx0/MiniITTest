@@ -1,15 +1,14 @@
-using MiniIT.Behaviours;
-using MiniIT.Configs;
-using MiniIT.Controllers;
-using MiniIT.Factory;
-using MiniIT.Input;
-using MiniIT.Models;
-using MiniIT.Providers;
+using MiniIT.MergeTwo.Configs;
+using MiniIT.MergeTwo.Controllers;
+using MiniIT.MergeTwo.Factory;
+using MiniIT.MergeTwo.Input;
+using MiniIT.MergeTwo.Models;
+using MiniIT.MergeTwo.Providers;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
-namespace MiniIT.Scopes
+namespace MiniIT.MergeTwo.Scopes
 {
     public class GameLifetimeScope : LifetimeScope
     {

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using MiniIT.Data;
+using MiniIT.MergeTwo.Data;
 
-namespace MiniIT.Models
+namespace MiniIT.MergeTwo.Models
 {
     public class BulletModel
     {

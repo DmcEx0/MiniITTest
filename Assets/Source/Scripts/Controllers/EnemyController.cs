@@ -2,18 +2,18 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using MiniIT.Behaviours;
-using MiniIT.Configs;
-using MiniIT.Data;
-using MiniIT.Factory;
-using MiniIT.Models;
-using MiniIT.Providers;
-using MiniIT.Views;
+using MiniIT.MergeTwo.Behaviours;
+using MiniIT.MergeTwo.Configs;
+using MiniIT.MergeTwo.Data;
+using MiniIT.MergeTwo.Factory;
+using MiniIT.MergeTwo.Models;
+using MiniIT.MergeTwo.Providers;
+using MiniIT.MergeTwo.Views;
 using UnityEngine;
 using VContainer.Unity;
 using Random = UnityEngine.Random;
 
-namespace MiniIT.Controllers
+namespace MiniIT.MergeTwo.Controllers
 {
     public class EnemyController : IInitializable, IStartable, IFixedTickable, IDisposable
     {

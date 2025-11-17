@@ -1,11 +1,11 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
-using MiniIT.Configs;
-using MiniIT.Tools;
+using MiniIT.MergeTwo.Configs;
+using MiniIT.MergeTwo.Tools;
 using UnityEngine;
 
-namespace MiniIT.Providers
+namespace MiniIT.MergeTwo.Providers
 {
     public class AsyncAnimationProvider
     {

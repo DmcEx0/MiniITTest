@@ -1,7 +1,7 @@
-using MiniIT.Factory;
+using MiniIT.MergeTwo.Factory;
 using UnityEngine;
 
-namespace MiniIT.Views
+namespace MiniIT.MergeTwo.Views
 {
     public class BulletView : PoolableObject
     {
