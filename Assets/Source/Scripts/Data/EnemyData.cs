@@ -1,5 +1,5 @@
 using MiniIT.Behaviours;
-using MiniIT.Views;
+using MiniIT.Factory;
 
 namespace MiniIT.Data
 {
@@ -7,16 +7,18 @@ namespace MiniIT.Data
     {
         public Health Health { get; private set; }
         public IMovable Movable { get; private set; }
+        public IDamageable Damageable { get; private set; }
 
-        public EnemyData(Health health, EnemyView view, IMovable movable)
+        public EnemyData(Health health, IDamageable damageable, IMovable movable)
         {
             Health = health;
             Movable = movable;
+            Damageable = damageable;
         }
 
-        public void Init()
+        public void Init(PoolableObject poolableObject)
         {
-            Health.Reset();
+            Health.Init(poolableObject);
         }
     }
 }

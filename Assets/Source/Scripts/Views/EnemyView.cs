@@ -4,13 +4,15 @@ using UnityEngine;
 
 namespace MiniIT.Views
 {
-    public class EnemyView : PoolableObject
+    public class EnemyView : PoolableObject, IDamageable
     {
         [field: SerializeField] public Rigidbody2D Rigidbody { get; private set; }
 
         [SerializeField] private SpriteRenderer _renderer = null;
 
         private Vector2 _initialPosition;
+        
+        public Action<BulletView, EnemyView> DamageReceived { get; set; }
         
         public void SetInitialPosition(Vector2 initialPosition)
         {
@@ -20,6 +22,11 @@ namespace MiniIT.Views
         public void FlipSprite(bool flip)
         {
             _renderer.flipY = flip;
+        }
+
+        public void TakeDamage(BulletView  bulletView)
+        {
+            DamageReceived?.Invoke(bulletView, this);
         }
 
         protected override void OnDisabled()

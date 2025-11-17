@@ -45,6 +45,8 @@ namespace MiniIT.Factory
             MovableData movableData = new MovableData(view.Rigidbody, direction, _enemyConfig.Speed);
 
             EnemyData data = new EnemyData(health, view, movableData);
+            
+            data.Init(view);
 
             return data;
         }

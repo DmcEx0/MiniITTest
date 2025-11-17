@@ -1,23 +1,62 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using MiniIT.Data;
+using MiniIT.Views;
 
 namespace MiniIT.Models
 {
-    public class EnemyModel
+    public class EnemyModel : IDisposable
     {
-        public List<EnemyData> _enemiesData = null;
+        private readonly BulletModel _bulletModel;
+        private readonly List<EnemyData> _enemiesData = null;
 
-        
-        public EnemyModel()
+        public EnemyModel(BulletModel bulletModel)
         {
+            _bulletModel = bulletModel;
             _enemiesData = new List<EnemyData>();
         }
 
-        public void AddEnemy(EnemyData enemyData)
+        public void Dispose()
         {
+            foreach (var data in _enemiesData)
+            {
+                data.Damageable.DamageReceived -= OnDamageReceived;
+            }
+        }
+
+        public void AddData(EnemyData enemyData)
+        {
+            enemyData.Damageable.DamageReceived += OnDamageReceived;
+
             _enemiesData.Add(enemyData);
         }
-        
+
+        private void OnDamageReceived(BulletView bulletView, EnemyView enemyView)
+        {
+            BulletData bulletData = null;
+
+            foreach (var data in _bulletModel.BulletData)
+            {
+                if (ReferenceEquals(data.Movable.Rigidbody, bulletView.Rigidbody))
+                {
+                    bulletData = data;
+
+                    EnemyData enemyData = _enemiesData.FirstOrDefault(enmData =>
+                        ReferenceEquals(enmData.Movable.Rigidbody, enemyView.Rigidbody));
+
+                    if (enemyData == null)
+                    {
+                        break;
+                    }
+
+                    enemyData.Health.TakeDamage(bulletData.Damage);
+
+                    break;
+                }
+            }
+        }
+
         public bool TryGetAvailableData(out EnemyData enemyData)
         {
             foreach (var data in _enemiesData)
@@ -26,14 +65,14 @@ namespace MiniIT.Models
                 {
                     continue;
                 }
-                
+
                 enemyData = data;
-                
+
                 return true;
             }
 
             enemyData = null;
-            
+
             return false;
         }
     }

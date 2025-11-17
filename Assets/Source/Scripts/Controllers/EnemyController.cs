@@ -5,6 +5,7 @@ using MiniIT.Behaviours;
 using MiniIT.Data;
 using MiniIT.Factory;
 using MiniIT.Models;
+using MiniIT.Views;
 using UnityEngine;
 using VContainer.Unity;
 using Random = UnityEngine.Random;
@@ -79,16 +80,16 @@ namespace MiniIT.Controllers
 
                 if (_enemyModel.TryGetAvailableData(out EnemyData enemyData))
                 {
-                    _factory.GetOnlyView();
+                    EnemyView view = _factory.GetOnlyView();
 
-                    enemyData.Init();
+                    enemyData.Init(view);
 
                     continue;
                 }
 
                 EnemyData data = _factory.Get(_spawnPoints[_currentIndex].position);
 
-                _enemyModel.AddEnemy(data);
+                _enemyModel.AddData(data);
                 _movementSystem.AddMovable(data.Movable);
             }
         }

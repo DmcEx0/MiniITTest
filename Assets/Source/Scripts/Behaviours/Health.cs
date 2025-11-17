@@ -1,4 +1,5 @@
 using System;
+using MiniIT.Factory;
 using UnityEngine;
 
 namespace MiniIT.Behaviours
@@ -6,21 +7,21 @@ namespace MiniIT.Behaviours
     public class Health
     {
         private readonly float _maxHealth;
+        
+        private PoolableObject _poolableObject;
 
         private float _currentHealth;
 
-        public Action Died;
-        
         public Health(float maxHealth)
         {
             _maxHealth = maxHealth;
-
-            Reset();
+            _currentHealth = _maxHealth;
         }
 
-        public void Reset()
+        public void Init(PoolableObject poolable)
         {
             _currentHealth = _maxHealth;
+            _poolableObject = poolable;
         }
 
         public void TakeDamage(float damage)
@@ -29,7 +30,7 @@ namespace MiniIT.Behaviours
 
             if (_currentHealth <= 0)
             {
-                Died?.Invoke();
+                _poolableObject.Disable();
             }
         }
     }
