@@ -49,14 +49,14 @@ namespace MiniIT.Views
 
         private void CheckOtherColliders()
         {
-            var pointerPosition = Collider.bounds.center;
+            Vector3 pointerPosition = Collider.bounds.center;
 
             RaycastHit2D hit = Physics2D.Raycast(pointerPosition, Vector2.zero);
 
             if (hit.collider != null && hit.collider.TryGetComponent(out IMergeable mergeable))
             {
                 Collider.enabled = false;
-                var mergeSuccess = Merging?.Invoke(this, mergeable);
+                bool? mergeSuccess = Merging?.Invoke(this, mergeable);
 
                 if (mergeSuccess == false)
                 {

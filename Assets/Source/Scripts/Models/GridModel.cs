@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using MiniIT.Configs;
 using MiniIT.Data;
+using MiniIT.Views;
 using UnityEngine;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
@@ -60,12 +61,12 @@ namespace MiniIT.Models
 
                     Vector2 worldPos = offset + localPos;
 
-                    var cellInstance = Object.Instantiate(_gridConfig.CellPrefab, worldPos, Quaternion.identity);
+                    CellView cellInstance = Object.Instantiate(_gridConfig.CellPrefab, worldPos, Quaternion.identity);
 
                     cellInstance.transform.localScale =
                         new Vector3(_gridConfig.CellSize, _gridConfig.CellSize, _gridConfig.CellSize);
 
-                    var newCellData = new CellData(cellInstance);
+                    CellData newCellData = new CellData(cellInstance);
                     
 #if ENABLE_DEBUG
                     cellInstance.name = $"Cell {i}-{j}";

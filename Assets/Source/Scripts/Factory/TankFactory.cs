@@ -24,13 +24,13 @@ namespace MiniIT.Factory
 
         public void Prepare()
         {
-            var poolSize = _gridConfig.GridSize.x * _gridConfig.GridSize.y;
+            int poolSize = _gridConfig.GridSize.x * _gridConfig.GridSize.y;
             _pool = new ObjectPool<MergedTankView>(_mergedTankConfig.MainTankPrefab, poolSize, _container);
         }
 
         public bool TryGet(out MergedTankData tankData, int level , CellData freeCell)
         {
-            var defaultData = _mergedTankConfig.MergedTanksData.FirstOrDefault(data => data.Level == level);
+            DefaultMergedTankData defaultData = _mergedTankConfig.MergedTanksData.FirstOrDefault(data => data.Level == level);
 
             if (defaultData == null)
             {
@@ -38,7 +38,7 @@ namespace MiniIT.Factory
                 return false;
             }
             
-            var tank = _pool.Get();
+            MergedTankView tank = _pool.Get();
             
             tank.Configure(defaultData.Sprite);
             
@@ -53,7 +53,7 @@ namespace MiniIT.Factory
 
         public int GetMaxTankLevel()
         {
-            var maxLevel = _mergedTankConfig.MergedTanksData.Max(data => data.Level);
+            int maxLevel = _mergedTankConfig.MergedTanksData.Max(data => data.Level);
             
             return maxLevel;
         }

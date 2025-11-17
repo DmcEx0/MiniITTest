@@ -49,7 +49,6 @@ namespace MiniIT.Controllers
         {
             _gridModel.BuildGrid();
 
-
             for (int i = 0; i < _gameConfig.InitialTankCount; i++)
             {
                 SpawnOnCell();

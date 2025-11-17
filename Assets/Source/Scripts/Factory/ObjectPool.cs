@@ -54,7 +54,7 @@ namespace MiniIT.Factory
                 }
             }
 
-            var newInstance = GameObject.Instantiate(_prefab, _parent);
+            T newInstance = Object.Instantiate(_prefab, _parent);
             _pool.Add(newInstance);
             
             return newInstance;
@@ -66,7 +66,7 @@ namespace MiniIT.Factory
 
             for (int i = 0; i < _poolSize; i++)
             {
-                var instance = GameObject.Instantiate(_prefab, _parent);
+                T instance = Object.Instantiate(_prefab, _parent);
                 pool.Add(instance);
                 instance.gameObject.SetActive(false);
             }

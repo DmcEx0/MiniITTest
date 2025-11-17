@@ -19,7 +19,7 @@ namespace MiniIT.Tools
 
         public async UniTask CallBounceEffectAsync(Transform transform, AnimationsType type, CancellationToken token)
         {
-            var currentData = _animationsConfig.GetAnimationData(type);
+            AnimationData currentData = _animationsConfig.GetAnimationData(type);
 
             await transform.DOScale(transform.localScale.x + 0.1f, currentData.Duration)
                 .SetEase(currentData.CurveStep1)
@@ -29,7 +29,7 @@ namespace MiniIT.Tools
         public async UniTask CallInBounceEffectAsync(Transform target, AnimationsType type,
             DirectionType directionType, float centerX , CancellationToken token)
         {
-            var data = _animationsConfig.GetAnimationData(type);
+            AnimationData data = _animationsConfig.GetAnimationData(type);
             float duration = data.Duration * 0.5f;
 
             float xOffset = directionType == DirectionType.Left ? -OffsetX : OffsetX;
