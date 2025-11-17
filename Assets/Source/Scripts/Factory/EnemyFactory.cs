@@ -16,10 +16,10 @@ namespace MiniIT.Factory
         {
             _enemyConfig = enemyConfig;
 
-            _pool = new ObjectPool<EnemyView>(enemyConfig.Prefab, gameConfig.EnemyPoolCount, container);
+            _pool = new ObjectPool<EnemyView>(enemyConfig.Prefab, gameConfig.EnemyPoolCount, container, Create);
         }
 
-        public void Prepare()
+        public override void Prepare()
         {
             _pool.Initialize();
         }
@@ -27,11 +27,11 @@ namespace MiniIT.Factory
         public EnemyData Get(Vector3 position)
         {
             EnemyView view = GetOnlyView();
-            
+
             view.transform.position = position;
 
             view.SetInitialPosition(position);
-            
+
             Vector2 direction = Vector2.right;
 
             if (position.x > 0)
@@ -45,7 +45,7 @@ namespace MiniIT.Factory
             MovableData movableData = new MovableData(view.Rigidbody, direction, _enemyConfig.Speed);
 
             EnemyData data = new EnemyData(health, view, movableData);
-            
+
             data.Init(view);
 
             return data;
@@ -54,7 +54,7 @@ namespace MiniIT.Factory
         public EnemyView GetOnlyView()
         {
             EnemyView view = _pool.Get();
-            
+
             return view;
         }
     }

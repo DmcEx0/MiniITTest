@@ -5,9 +5,9 @@ namespace MiniIT.Data
 {
     public class EnemyData
     {
-        public Health Health { get; private set; }
-        public IMovable Movable { get; private set; }
-        public IDamageable Damageable { get; private set; }
+        public Health Health { get; private set; } = null;
+        public IMovable Movable { get; private set; } = null;
+        public IDamageable Damageable { get; private set; } = null;
 
         public EnemyData(Health health, IDamageable damageable, IMovable movable)
         {

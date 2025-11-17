@@ -8,7 +8,7 @@ namespace MiniIT.Models
 {
     public class EnemyModel : IDisposable
     {
-        private readonly BulletModel _bulletModel;
+        private readonly BulletModel _bulletModel = null;
         private readonly List<EnemyData> _enemiesData = null;
         
         public IReadOnlyList<EnemyData>  EnemiesData => _enemiesData;

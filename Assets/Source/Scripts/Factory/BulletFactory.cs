@@ -13,10 +13,10 @@ namespace MiniIT.Factory
         public BulletFactory(MergedTankConfig config, Transform bulletContainer)
         {
             _config = config;
-            _pool = new ObjectPool<BulletView>(_config.BulletPrefab, 50, bulletContainer);
+            _pool = new ObjectPool<BulletView>(_config.BulletPrefab, 50, bulletContainer, Create);
         }
 
-        public void Prepare()
+        public override void Prepare()
         {
             _pool.Initialize();
         }

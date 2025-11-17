@@ -5,7 +5,7 @@ namespace MiniIT.Data
 {
     public class MovableData : IMovable
     {
-        public Rigidbody2D Rigidbody { get; private set; }
+        public Rigidbody2D Rigidbody { get; private set; } = null;
         public Vector2 Direction { get; private set; }
         public float Speed { get; private set; }
         

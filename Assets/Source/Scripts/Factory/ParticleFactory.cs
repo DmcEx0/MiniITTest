@@ -12,10 +12,10 @@ namespace MiniIT.Factory
 
         public ParticleFactory(ParticleConfig config, Transform particleContainer)
         {
-            _starsPool = new ObjectPool<ParticleView>(config.StarsParticlePrefab, StarsPoolSize, particleContainer);
+            _starsPool = new ObjectPool<ParticleView>(config.StarsParticlePrefab, StarsPoolSize, particleContainer, Create);
         }
 
-        public void Prepare()
+        public override void Prepare()
         {
             _starsPool.Initialize();
         }

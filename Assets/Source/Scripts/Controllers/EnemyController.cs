@@ -23,8 +23,8 @@ namespace MiniIT.Controllers
 
         private readonly List<Transform> _spawnPoints = null;
 
-        private int _previousIndex = 0;
-        private int _currentIndex = 0;
+        private int _previousIndex;
+        private int _currentIndex;
 
         private bool _canSpawnEnemies = true;
 

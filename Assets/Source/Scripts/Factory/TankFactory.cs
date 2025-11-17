@@ -16,10 +16,10 @@ namespace MiniIT.Factory
             _mergedTankConfig = mergedTankConfig;
 
             int poolSize = gridConfig.GridSize.x * gridConfig.GridSize.y;
-            _pool = new ObjectPool<MergedTankView>(_mergedTankConfig.MainTankPrefab, poolSize, container);
+            _pool = new ObjectPool<MergedTankView>(_mergedTankConfig.MainTankPrefab, poolSize, container, Create);
         }
 
-        public void Prepare()
+        public override void Prepare()
         {
             _pool.Initialize();
         }

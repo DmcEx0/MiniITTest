@@ -5,7 +5,7 @@ namespace MiniIT.Data
     public class BulletData
     {
         public float Damage { get; private set; }
-        public IMovable Movable { get; private set; }
+        public IMovable Movable { get; private set; } = null;
         
         public BulletData(IMovable movable)
         {

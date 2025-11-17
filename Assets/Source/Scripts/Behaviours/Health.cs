@@ -1,4 +1,3 @@
-using System;
 using MiniIT.Factory;
 using UnityEngine;
 
@@ -6,11 +5,11 @@ namespace MiniIT.Behaviours
 {
     public class Health
     {
-        private readonly float _maxHealth;
+        private readonly float _maxHealth = 0;
         
-        private PoolableObject _poolableObject;
+        private PoolableObject _poolableObject = null;
 
-        private float _currentHealth;
+        private float _currentHealth = 0;
 
         public Health(float maxHealth)
         {

@@ -9,5 +9,7 @@ namespace MiniIT.Factory
             var instance = Object.Instantiate(prefab);
             return instance;
         }
+        
+        public virtual void Prepare() { }
     }
 }

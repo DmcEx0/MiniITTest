@@ -4,7 +4,7 @@ namespace MiniIT.Data
 {
     public class MergedTankData
     {
-        private readonly MergedTankView _view;
+        private readonly MergedTankView _view  = null;
         private readonly float _delayBetweenShoot;
         
         public readonly int Level;
