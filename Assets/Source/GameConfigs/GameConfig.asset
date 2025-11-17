@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd44eaa5c671c894ab26d9edaf8066ce, type: 3}
   m_Name: GameConfig
   m_EditorClassIdentifier: Assembly-CSharp::MiniIT.Configs.GameConfig
-  <DelayBetweenSpawnNextTank>k__BackingField: 4
+  <DelayBetweenSpawnNextTank>k__BackingField: 2.5
   <InitialTankCount>k__BackingField: 3
   <EnemyPoolCount>k__BackingField: 15
   <DelayBetweenSpawnEnemy>k__BackingField: 0.7
